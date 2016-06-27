@@ -5,16 +5,34 @@
 	<title>IMMP - Image Map for MetPet</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+	<link href='../css/style.css' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="../css/magnifier.css">
 </head>
 
 <body>
-<div class="wrapper">More coming soon
+<div class="wrapper">
+	<div class="title">IMMP - Image Map for MetPet</div>
 
-
-
+	<div class="content">
+		<div class="image magnifier-thumb-wrapper">
+			<img id="thumb" class="map" src="../testdata/Example_3-01.png" data-large-img-url="../testdata/Example_3-01.png" data-large-img-wrapper="preview"/>
+		</div>
+		<div class="data" id="data">
+		Data will be in this...eventually...
+		</div>
+	</div>
+	<div class="location" id="loctest"> "X: 0.0, Y: 0,0" </div>
+	<div class="magnifier-preview" id="preview"></div>
 
 </div>
+	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../js/Event.js"></script>
 	<script type="text/javascript" src="../js/Magnifier.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript">
+	var evt = new Event(),
+    	m = new Magnifier(evt);
+		m.attach({thumb: '#thumb'});
+	</script>
 </body>
 </html>

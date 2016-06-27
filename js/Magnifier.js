@@ -235,6 +235,7 @@ var Magnifier = function (evt, options) {
                 curData.largeL = Math.round(curData.lensBgX * curData.zoom * (curData.largeWrapperW / curData.w));
                 curData.largeT = Math.round(curData.lensBgY * curData.zoom * (curData.largeWrapperH / curData.h));
             }
+            document.getElementById("loctest").innerHTML = "X: " + pos.x + ", Y: " + pos.y;
         },
         zoomInOut = function (e) {
             var delta = (e.wheelDelta > 0 || e.detail < 0) ? 0.1 : -0.1,
