@@ -2,37 +2,93 @@
             "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<title>IMMP - Image Map for MetPet</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-	<link href='../css/style.css' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="../css/magnifier.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles from Bootstrap "Dashboard" template -->
+    <link href="../css/dashboard.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this page-->
+    <link href="../css/style.css" rel="stylesheet">
+
+	<!-- Latest compiled and minified Bootstrap JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
 <body>
 <div class="wrapper">
-	<div class="title">IMMP - Image Map for MetPet</div>
+	
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://getbootstrap.com/examples/dashboard/#">IMMP - Image Map for MetPet</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://getbootstrap.com/examples/dashboard/#">Settings</a></li>
+            <li><a href="https://getbootstrap.com/examples/dashboard/#">Contact</a></li>
+            <li><a href="https://getbootstrap.com/examples/dashboard/#">Sign In</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-	<div class="content">
-		<div class="image magnifier-thumb-wrapper">
-			<img id="thumb" class="map" src="../testdata/Example_3-01.png" data-large-img-url="../testdata/Example_3-01.png" data-large-img-wrapper="preview"/>
-		</div>
-		<div class="data" id="data">
-		Data will be in this...eventually...
-		</div>
-	</div>
-	<div class="location" id="loctest"> "X: 0.0, Y: 0,0" </div>
-	<div class="magnifier-preview" id="preview"></div>
+    <!-- I know a lot less about this part -->    
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="https://getbootstrap.com/examples/dashboard/#">Data Will Appear Here Soon <span class="sr-only">(current)</span></a></li>
+            <li><a href="https://getbootstrap.com/examples/dashboard/#">Categories</a></li>
+            <li><a href="https://getbootstrap.com/examples/dashboard/#">Rocks</a></li>
+            <li><a href="https://getbootstrap.com/examples/dashboard/#">Chemicals</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <div class="row placeholders">
+            <img class="analyze-image" src=../testdata/Example_3-01.png onclick="getImageCoords(event,this);"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./Dashboard Template for Bootstrap_files/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="./Dashboard Template for Bootstrap_files/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="./Dashboard Template for Bootstrap_files/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./Dashboard Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
+
+
+	<script type="text/javascript">
+	    function getImageCoords(event,img) {
+	        var posX = event.offsetX?(event.offsetX):event.pageX-img.offsetLeft;
+	        var posY = event.offsetY?(event.offsetY):event.pageY-img.offsetTop;
+	        alert("You clicked at: ("+posX+","+posY+")");
+	    }
+	</script>
+  
 
 </div>
 	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
-	<script type="text/javascript" src="../js/Event.js"></script>
-	<script type="text/javascript" src="../js/Magnifier.js"></script>
 	<script type="text/javascript" src="../js/main.js"></script>
-	<script type="text/javascript">
-	var evt = new Event(),
-    	m = new Magnifier(evt);
-		m.attach({thumb: '#thumb'});
-	</script>
 </body>
 </html>
