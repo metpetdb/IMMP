@@ -8,8 +8,17 @@ IMMP is a simple UI designed to allow for simple tagging of geological data in p
 VERSION
 --------------
 
-###v0.0.0
-####Lol
+###v0.2
+####Much more accurate visualization
+- Bootstrap css libraries added and implemented
+- Bootstrap theme Dashboard used for design influence
+- Beginning of CSV processing, panel added
+- onClick event added that prints cursor location on image
+
+###v0.1
+####Rough Almost-Visualization
+- Mostly a sandbox for playing with the new technologies
+- Nothing really works
 
 CREDIT
 --------------
