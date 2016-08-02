@@ -9,14 +9,10 @@
 	<title>IMMP - Image Map for MetPet</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles from Bootstrap "Dashboard" template -->
-    <link href="css/dashboard.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
 
     <!-- Custom styles for this page-->
-    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 
 	<!-- Latest compiled and minified Bootstrap JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -60,7 +56,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
           <div class="row placeholders">
-            <img class="analyze-image" src=../testdata/Example_3-01.png onclick="getImageCoords(event,this);"/>
+            <img class="analyze-image" src=https://i.imgur.com/WWAFbom.png onclick="getImageCoords(event,this);"/>
           </div>
         </div>
       </div>
