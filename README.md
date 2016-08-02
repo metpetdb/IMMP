@@ -12,8 +12,8 @@ VERSION
 ####Flaskification & User Authentication
 - IMMP is now a Flask application (to run more in line with [other MetPet projects](https://github.com/metpetdb/))
 - Basic user authentication implemented
--- Login and profile page routing
--- Information piped from login page to profile page
+ * Login and profile page routing
+ * Information piped from login page to profile page
 
 ###v0.2
 ####Much more accurate visualization
