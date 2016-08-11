@@ -8,6 +8,12 @@ IMMP is a simple UI designed to allow for simple tagging of geological data in p
 VERSION
 --------------
 
+###v0.4
+####ImageMapster, The Beginning Of Image Interactions
+- Included [imagemapster.js](https://github.com/jamietre/imagemapster) in repository
+- Include remote jquery from Google in templates
+- Began programatically rendering mappings over image
+
 ###v0.3
 ####Flaskification & User Authentication
 - IMMP is now a Flask application (to run more in line with [other MetPet projects](https://github.com/metpetdb/))

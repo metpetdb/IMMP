@@ -14,8 +14,11 @@
     <!-- Custom styles for this page-->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 	<!-- Latest compiled and minified Bootstrap JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -56,7 +59,11 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
           <div class="row placeholders">
-            <img class="analyze-image" src=https://i.imgur.com/WWAFbom.png onclick="getImageCoords(event,this);"/>
+            <img class= "mapper" id="mapper" src=https://i.imgur.com/jBMfAJh.jpg usemap="#mapper-map"/>
+            <map name="mapper-map">
+              <area shape="rect" data-name="1,all" coords="30,40,100,120" href="#">
+              <area shape="rect" data-name="2,all" coords="192,482,327,627" href="#">
+            </map>
           </div>
         </div>
       </div>
@@ -74,6 +81,7 @@
 
 </div>
 	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
-	<script type="text/javascript" src="../js/main.js"></script>
+  <script type="text/javascript" src="../static/js/jquery.imagemapster.js"></script>
+  <script type="text/javascript" src="../static/js/main.js"></script>
 </body>
 </html>
