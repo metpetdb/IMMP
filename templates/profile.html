@@ -50,38 +50,42 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="https://getbootstrap.com/examples/dashboard/#">Data Will Appear Here Soon <span class="sr-only">(current)</span></a></li>
-            <li><a href="https://getbootstrap.com/examples/dashboard/#">Categories</a></li>
-            <li><a href="https://getbootstrap.com/examples/dashboard/#">Rocks</a></li>
-            <li><a href="https://getbootstrap.com/examples/dashboard/#">Chemicals</a></li>
+            <li class="data-title"><a href="https://getbootstrap.com/examples/dashboard/#">Data Points</a></li>
+            <li id = "1"><a href="https://getbootstrap.com/examples/dashboard/#">Rocks</a></li>
+            <li id = "2"><a class="2" href="https://getbootstrap.com/examples/dashboard/#">Chemicals</a></li>
+            <li id = "3"><a href="https://getbootstrap.com/examples/dashboard/#">Unidentified</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
           <div class="row placeholders">
-            <img class= "mapper" id="mapper" src=https://i.imgur.com/jBMfAJh.jpg usemap="#mapper-map"/>
+
+    <form class="inputstuff">
+        <input type="text" id="imagename" value="" />
+        <input type="button" id="btn" value="GO" />
+    </form>
+            <img class= "mapper" id="mapper" usemap="#mapper-map"/>
             <map name="mapper-map">
               <area shape="rect" data-name="1,all" coords="30,40,100,120" href="#">
               <area shape="rect" data-name="2,all" coords="192,482,327,627" href="#">
+              <area shape="rect" data-name="3,all" coords="800,100,950,200" href="#">
             </map>
           </div>
         </div>
       </div>
     </div>
 
-
-	<script type="text/javascript">
-	    function getImageCoords(event,img) {
-	        var posX = event.offsetX?(event.offsetX):event.pageX-img.offsetLeft;
-	        var posY = event.offsetY?(event.offsetY):event.pageY-img.offsetTop;
-	        alert("You clicked at: ("+posX+","+posY+")");
-	    }
-	</script>
-  
-
 </div>
 	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
-  <script type="text/javascript" src="../static/js/jquery.imagemapster.js"></script>
-  <script type="text/javascript" src="../static/js/main.js"></script>
+
+    <script type="text/javascript">
+      document.getElementById('btn').onclick = function() {
+          var val = document.getElementById('imagename').value;
+          document.getElementById('mapper').src = val;
+          $( '.inputstuff' ).hide();
+          $.getScript("../static/js/jquery.imagemapster.js");
+          $.getScript("../static/js/main.js");
+      }
+    </script>
 </body>
 </html>

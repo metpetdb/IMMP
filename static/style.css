@@ -103,3 +103,13 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+.mapper {
+  height: 85vh;
+}
+.data-title {
+  color: #ffffff;
+  background-color: #5cb85c;
+}
+.data-title a {
+  color: #fff;
+}

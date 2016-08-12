@@ -27,9 +27,11 @@ var inArea,
         isSelectable: false,
         onMouseover: function (data) {
             inArea = true;
+            $( "#" + data.key ).addClass("active");
         },
         onMouseout: function (data) {
             inArea = false;
+            $( "#" + data.key ).removeClass("active");
         }
     };
     opts = $.extend({}, all_opts, initial_opts, single_opts);
@@ -57,7 +59,6 @@ var inArea,
 $(document).ready(function() {
   $('img').click(function(e) {
     var offset = $(this).offset();
-    alert(e.pageX - offset.left);
-    alert(e.pageY - offset.top);
+    alert("X: " + (e.pageX - offset.left).toString() + ", Y: " + (e.pageY - offset.top).toString());
   });
 });
