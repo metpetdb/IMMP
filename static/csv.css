@@ -1,0 +1,33 @@
+body,
+html {
+margin:0;
+padding:0;
+color:#000;
+background:#f9f9f9;
+}
+
+#wrap {
+width:90vw;
+height: 100vh;
+margin:0 auto;
+background:#999;
+}
+
+#main {
+float:right;
+width:60vw;
+}
+#sidebar {
+float:left;
+width:30vw;
+height: 80%;
+background:#999;
+}
+
+.mapper {
+	width: 100%;
+}
+
+.active {
+	color: #ffffff;
+}
