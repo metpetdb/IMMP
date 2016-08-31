@@ -60,6 +60,7 @@ var inArea,
 
 function tableOver(num){
     map = $('#mapper');
+    $( "#" + num ).addClass("active");
     map.mapster('set_options', single_opts)
         .mapster('set', true, "" + num);
     console.log(num + " added active");
@@ -68,14 +69,15 @@ function tableOver(num){
 
 function tableOut(num){
     map = $('#mapper');
+    $( "#" + num ).removeClass("active");
     map.mapster('set_options', single_opts)
         .mapster('set', false, "" + num);
 
 }
 
 $(document).ready(function() {
-  $('img').click(function(e) {
-    var offset = $(this).offset();
-    alert("X: " + (e.pageX - offset.left).toString() + ", Y: " + (e.pageY - offset.top).toString());
+    console.log("ready");
+  $('img').imgAreaSelect({
+    handles: true
   });
 });
