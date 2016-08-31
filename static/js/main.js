@@ -28,10 +28,12 @@ var inArea,
         onMouseover: function (data) {
             inArea = true;
             $( "#" + data.key ).addClass("active");
+            console.log(data.key + " added active");
         },
         onMouseout: function (data) {
             inArea = false;
             $( "#" + data.key ).removeClass("active");
+            console.log(data.key + " removed active");
         }
     };
     opts = $.extend({}, all_opts, initial_opts, single_opts);
@@ -55,6 +57,21 @@ var inArea,
                 map.mapster('set', false, 'all');
             }
         });
+
+function tableOver(num){
+    map = $('#mapper');
+    map.mapster('set_options', single_opts)
+        .mapster('set', true, "" + num);
+    console.log(num + " added active");
+
+}
+
+function tableOut(num){
+    map = $('#mapper');
+    map.mapster('set_options', single_opts)
+        .mapster('set', false, "" + num);
+
+}
 
 $(document).ready(function() {
   $('img').click(function(e) {
