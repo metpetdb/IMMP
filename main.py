@@ -1,6 +1,21 @@
 from flask import Flask, render_template, redirect, url_for, request
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/pre-registration'
+db = SQLAlchemy(app)
+
+# Database model
+class MapEntry(db.model):
+	__tablename__ = "map_entries"
+	id = db.Column(db.Integer, primary_key=True)
+	img_url = db.Column(db.String(240), unique=True)
+	
+	def __init__(self, img_url):
+		self.img_url = img_url
+
+	def __repr__(self):
+		return '<URL %r>' % self.img_url
+
 
 # Index routing
 @app.route('/')
