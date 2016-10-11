@@ -38,7 +38,6 @@ var inArea,
     };
     opts = $.extend({}, all_opts, initial_opts, single_opts);
 
-
     // Bind to the image 'mouseover' and 'mouseout' events to activate or deactivate ALL the areas, like the
     // original demo. Check whether an area has been activated with "inArea" - IE<9 fires "onmouseover" 
     // again for the image when entering an area, so all areas would stay highlighted when entering

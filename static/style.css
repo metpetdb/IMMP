@@ -113,3 +113,18 @@ body {
 .data-title a {
   color: #fff;
 }
+
+.side {
+  float: left;
+  width: 20vw;
+  height: 100%;
+  background-color: #c9c;
+}
+.footer {
+clear:both;
+padding:5px 10px;
+background:#cc9;
+}
+.footer p {
+margin:0;
+}
