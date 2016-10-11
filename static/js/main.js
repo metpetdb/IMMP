@@ -76,9 +76,28 @@ function tableOut(num){
 
 }
 
+function mapData(x, y, id){
+
+}
+
 $(document).ready(function() {
     console.log("ready");
   $('img').imgAreaSelect({
     handles: true
+  });
+
+  $(".data-row").click(function() {
+    //Handles click of data row
+  });
+
+  $(".mapper").click(function() {
+    //Handles click of map (used for adding new mappings)
+    /* Order of events:
+    1. Store X and Y locations of click (TODO)
+    2. Highlight data in table that has not been mapped (TODO)
+    3. Wait for user to click data to map to (TODO)
+    4. Send to "mapData" function that takes x, y, and id, and adds to map (TODO)
+    */
+
   });
 });

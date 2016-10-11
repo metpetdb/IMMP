@@ -8,6 +8,10 @@ IMMP is a simple UI designed to allow for simple tagging of geological data in p
 VERSION
 --------------
 
+###v0.6
+####CreateMapping
+- Ability to create a mapping between CSV and image
+
 ###v0.5
 ####ImageMap linking and CSV importing
 - Hovering over images in the image map now highlights a corresponding bit of data
