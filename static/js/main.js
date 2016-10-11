@@ -25,14 +25,15 @@ var inArea,
     initial_opts = {
         mapKey: 'data-name',
         isSelectable: false,
+        // These are called when user hovers over mapped locations on image
         onMouseover: function (data) {
             inArea = true;
-            $( "#" + data.key ).addClass("active");
+            $( "#" + data.key ).addClass("hovered");
             console.log(data.key + " added active");
         },
         onMouseout: function (data) {
             inArea = false;
-            $( "#" + data.key ).removeClass("active");
+            $( "#" + data.key ).removeClass("hovered");
             console.log(data.key + " removed active");
         }
     };
@@ -57,9 +58,10 @@ var inArea,
             }
         });
 
+// These are called when user hovers over data in table
 function tableOver(num){
     map = $('#mapper');
-    $( "#" + num ).addClass("active");
+    $( "#" + num ).addClass("hovered");
     map.mapster('set_options', single_opts)
         .mapster('set', true, "" + num);
     console.log(num + " added active");
@@ -68,7 +70,7 @@ function tableOver(num){
 
 function tableOut(num){
     map = $('#mapper');
-    $( "#" + num ).removeClass("active");
+    $( "#" + num ).removeClass("hovered");
     map.mapster('set_options', single_opts)
         .mapster('set', false, "" + num);
 

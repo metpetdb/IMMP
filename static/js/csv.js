@@ -50,7 +50,7 @@ function processFile(e) {
       }
       if(data[0].constructor === Array) {
         for(var row in data) {
-          html += '<tr onmouseover="tableOver(' + row + ')" onmouseout="tableOut( ' + row + ')" id="' + row + '" >\r\n';
+          html += '<tr onMouseover="tableOver(' + row + ')" onMouseout="tableOut( ' + row + ')" id="' + row + '">\r\n';
           for(var item in data[row]) {
             html += '<td>' + data[row][item] + '</td>\r\n';
           }
