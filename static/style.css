@@ -104,7 +104,7 @@ body {
   border-radius: 50%;
 }
 .mapper {
-  height: 85vh;
+  /*height: 85vh;*/
 }
 .data-title {
   color: #ffffff;
@@ -123,7 +123,6 @@ body {
 .footer {
 clear:both;
 padding:5px 10px;
-background:#cc9;
 }
 .footer p {
 margin:0;
