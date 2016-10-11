@@ -6,6 +6,12 @@
 // onMouseover and onMouseout, which are fired when an area is entered or left. We will use these to show or
 // remove the captions, and also set a flag to let the other code know if we're currently in an area.
 
+// createMode indicates if we are or are not in create mode
+console.log("ready");
+var createMode = false;
+var x;
+var y;
+
 var inArea,
     map = $('#mapper'),
     single_opts = {
@@ -77,6 +83,33 @@ function tableOut(num){
 }
 
 function mapData(x, y, id){
+    var mapHTML = "<area shape=\"circle\" ";
+    mapHTML += "id=\"" + id + "\" ";
+    mapHTML += "data-name=\"" + id + ",all\" ";
+    mapHTML += "coords=\"" + x + "," + y + ",10\" href=\"#\">";
+    alert(mapHTML);
+    $(".mapper-map").append(mapHTML);
+}
+
+function dataClick(id){
+    if(createMode){
+        mapData(x,y,id);
+    }
+    createMode = false;
+}
+
+function createMapping(event, img){
+        //Handles click of map (used for adding new mappings)
+    /* Order of events:
+    1. Store X and Y locations of click
+    2. Highlight data in table that has not been mapped (TODO)
+    3. Wait for user to click data to map to (TODO)
+    4. Send to "mapData" function that takes x, y, and id, and adds to map (TODO)
+    */
+
+    x = event.offsetX?(event.offsetX):event.pageX-img.offsetLeft;
+    y = event.offsetY?(event.offsetY):event.pageY-img.offsetTop;
+    createMode = true;
 
 }
 
@@ -86,18 +119,4 @@ $(document).ready(function() {
     handles: true
   });
 
-  $(".data-row").click(function() {
-    //Handles click of data row
-  });
-
-  $(".mapper").click(function() {
-    //Handles click of map (used for adding new mappings)
-    /* Order of events:
-    1. Store X and Y locations of click (TODO)
-    2. Highlight data in table that has not been mapped (TODO)
-    3. Wait for user to click data to map to (TODO)
-    4. Send to "mapData" function that takes x, y, and id, and adds to map (TODO)
-    */
-
-  });
 });

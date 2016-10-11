@@ -51,7 +51,7 @@ function processFile(e) {
       if(data[0].constructor === Array) {
         for(var row in data) {
           //HTML addition for new table row (one for every row in CSV)
-          html += '<tr onMouseover="tableOver(' + row + ')" onMouseout="tableOut( ' + row + ')" id="' + row + '" class="data-row">\r\n';
+          html += '<tr onMouseover="tableOver(' + row + ')" onMouseout="tableOut( ' + row + ')" id="' + row + '" onClick="dataClick( ' + row + ')" class="data-row">\r\n';
           for(var item in data[row]) {
             html += '<td>' + data[row][item] + '</td>\r\n';
           }

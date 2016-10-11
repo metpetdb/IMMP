@@ -17,6 +17,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
+
 	<!-- Latest compiled and minified Bootstrap JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -73,7 +74,7 @@
         <input type="text" id="imagename" value="" />
         <input type="button" id="btn" value="GO" />
     </form>
-            <img class="mapper" id="mapper" usemap="#mapper-map"/>
+            <img class="mapper" id="mapper" usemap="#mapper-map" onclick="createMapping(event, this)"/>
             <map name="mapper-map">
               <area shape="rect" id="1" data-name="1,all" coords="30,40,100,120" href="#">
               <area shape="rect" id="2" data-name="2,all" coords="192,482,327,627" href="#">
@@ -99,11 +100,12 @@
           var val = document.getElementById('imagename').value;
           document.getElementById('mapper').src = val;
           $( '.inputstuff' ).hide();
-          $.getScript("../static/js/jquery.imagemapster.js");
           $.getScript("../static/js/jquery.imgareaselect.min.js");
           $.getScript("../static/js/jquery.imgareaselect.pack.js");
-          $.getScript("../static/js/main.js");
+          console.log("Done");
       }
     </script>
+  <script src="{{ url_for('static', filename='js/jquery.imagemapster.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 </body>
 </html>
