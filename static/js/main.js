@@ -36,7 +36,6 @@ var inArea,
     };
     opts = $.extend({}, all_opts, initial_opts, single_opts);
 
-
     // Bind to the image 'mouseover' and 'mouseout' events to activate or deactivate ALL the areas, like the
     // original demo. Check whether an area has been activated with "inArea" - IE<9 fires "onmouseover" 
     // again for the image when entering an area, so all areas would stay highlighted when entering
@@ -56,8 +55,36 @@ var inArea,
             }
         });
 
+function tableOver(data){
+    $( "#" + data ).addClass("active");
+    inArea = true;
+
+    map.mapster('set_options', all_opts)
+        .mapster('set', true, 'all')
+
+
+    map.mapster('set_options', all_opts)
+        .mapster('set', false, data + ',all' )
+
+    map.mapster('set_options', single_opts)
+        .mapster('set', true, data );
+    
+}
+function tableOut(data){
+    inArea = false;
+    $( "#" + data ).removeClass("active");
+    map.mapster('set', false, 'all');
+
+    map.mapster('set_options', all_opts)
+        .mapster('set', false, data + ',all' )
+
+    map.mapster('set_options', single_opts)
+        .mapster('set', false, data );
+}
+
+
 $(document).ready(function() {
-  $('img').click(function(e) {
+  $('img').onmouseup(function(e) {
     var offset = $(this).offset();
     alert("X: " + (e.pageX - offset.left).toString() + ", Y: " + (e.pageY - offset.top).toString());
   });

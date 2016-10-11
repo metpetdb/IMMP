@@ -6,6 +6,11 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 	return render_template("index.html")
+
+
+@app.route('/csv')
+def csv():
+	return render_template("csv.html")
 	
 # Login page routing
 @app.route('/login', methods=['GET', 'POST'])

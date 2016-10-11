@@ -49,12 +49,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="data-title"><a href="https://getbootstrap.com/examples/dashboard/#">Data Points</a></li>
-            <li id = "1"><a href="https://getbootstrap.com/examples/dashboard/#">Rocks</a></li>
-            <li id = "2"><a href="https://getbootstrap.com/examples/dashboard/#">Chemicals</a></li>
-            <li id = "3"><a href="https://getbootstrap.com/examples/dashboard/#">Unidentified</a></li>
-          </ul>
+          <input type=file id=files />
+          <button id=upload>Upload CSV file</button>
+          <br/><br/>
+          <div class="result">
+            <table id="result" border="1"></table>
+          </div>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
@@ -73,10 +73,16 @@
           </div>
         </div>
       </div>
+
+      <div class="footer">
+        Image Map for MetPet v0.5
+      </div>
     </div>
 
 </div>
 	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <script src="../static/js/jquery.csv.min.js"></script>
+  <script src="../static/js/csv.js"></script>
 
     <script type="text/javascript">
       document.getElementById('btn').onclick = function() {
