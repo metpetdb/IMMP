@@ -10,7 +10,8 @@ VERSION
 
 ###v0.6
 ####CreateMapping
-- Ability to create a mapping between CSV and image
+- Ability to create a mapping between a row of data and a location on the image
+ * Not stored anywhere, just a local instance
 
 ###v0.5
 ####ImageMap linking and CSV importing
