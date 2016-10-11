@@ -10,6 +10,7 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='imgareaselect-default.css')}}">
 
     <!-- Custom styles for this page-->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
@@ -37,9 +38,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://getbootstrap.com/examples/dashboard/#">Settings</a></li>
-            <li><a href="https://getbootstrap.com/examples/dashboard/#">Contact</a></li>
-            <li><a href="https://getbootstrap.com/examples/dashboard/#">Hello {{ name }}</a></li>
+            <li><a href="/">Settings</a></li>
+            <li><a href="/">Contact</a></li>
+            <li><a href="/">Hello {{ name }}</a></li>
           </ul>
         </div>
       </div>
@@ -49,6 +50,14 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
+          <!-- Example of data point linking, note onMouseover and onMouseout functions
+          <ul class="nav nav-sidebar">
+            <li class="data-title"><a href="https://getbootstrap.com/examples/dashboard/#">Data Points</a></li>
+            <li id = "1"><a href="#" onMouseover="tableOver(1)" onMouseout="tableOut(1)">Rocks</a></li>
+            <li id = "2"><a href="#" onMouseover="tableOver(2)" onMouseout="tableOut(2)">Chemicals</a></li>
+            <li id = "3"><a href="#" onMouseover="tableOver(3)" onMouseout="tableOut(3)">Unidentified</a></li>
+          </ul>
+          -->
           <input type=file id=files />
           <button id=upload>Upload CSV file</button>
           <br/><br/>
@@ -64,11 +73,11 @@
         <input type="text" id="imagename" value="" />
         <input type="button" id="btn" value="GO" />
     </form>
-            <img class= "mapper" id="mapper" usemap="#mapper-map"/>
+            <img class="mapper" id="mapper" usemap="#mapper-map"/>
             <map name="mapper-map">
-              <area shape="rect" data-name="1,all" coords="30,40,100,120" href="#">
-              <area shape="rect" data-name="2,all" coords="192,482,327,627" href="#">
-              <area shape="rect" data-name="3,all" coords="800,100,950,200" href="#">
+              <area shape="rect" id="1" data-name="1,all" coords="30,40,100,120" href="#">
+              <area shape="rect" id="2" data-name="2,all" coords="192,482,327,627" href="#">
+              <area shape="rect" id="3" data-name="3,all" coords="800,100,950,200" href="#">
             </map>
           </div>
         </div>
@@ -90,6 +99,8 @@
           document.getElementById('mapper').src = val;
           $( '.inputstuff' ).hide();
           $.getScript("../static/js/jquery.imagemapster.js");
+          $.getScript("../static/js/jquery.imgareaselect.min.js");
+          $.getScript("../static/js/jquery.imgareaselect.pack.js");
           $.getScript("../static/js/main.js");
       }
     </script>

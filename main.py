@@ -5,12 +5,7 @@ app = Flask(__name__)
 # Index routing
 @app.route('/')
 def index():
-	return render_template("index.html")
-
-
-@app.route('/csv')
-def csv():
-	return render_template("csv.html")
+	return render_template("profile.html")
 	
 # Login page routing
 @app.route('/login', methods=['GET', 'POST'])
