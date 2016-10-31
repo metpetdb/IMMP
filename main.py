@@ -27,7 +27,7 @@ class Maps(db.Model):
 @app.route('/')
 def index():
 	return render_template("profile.html")
-	
+
 # Login page routing
 @app.route('/login', methods=['GET', 'POST'])
 def login():

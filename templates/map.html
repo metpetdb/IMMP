@@ -1,12 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title>New Map</title>
-<meta charset="utf-8">
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<h2> {{ map.url }} </h2>
-<h3> {{ map.csv }} </h3>
-<img src=" {{ map.url }} " />
+	<title>IMMP - Image Map for MetPet</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='imgareaselect-default.css')}}">
+
+    <!-- Custom styles for this page-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+	<!-- Latest compiled and minified Bootstrap JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<div class="wrapper">
+	
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://getbootstrap.com/examples/dashboard/#">IMMP - Image Map for MetPet</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Settings</a></li>
+            <li><a href="/">Contact</a></li>
+            <li><a href="/">Hello {{ name }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- I know a lot less about this part -->    
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 csvstuff">
+          <input type=file id=files />
+          <button id=upload>Upload CSV file</button>
+          <br/><br/>
+          <div class="result">
+            <table id="result" border="1"></table>
+          </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <div class="row placeholders">
+            <img src=" {{ map.url }} " class="mapper" id="mapper" usemap="#mapper-map" onclick="createMapping(event, this)"/>
+            <map name="mapper-map" class="mapper-map">
+            </map>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        Image Map for MetPet v0.5
+      </div>
+    </div>
+
+    <div id="save"><button type="button">Save</button></div>
+
+</div>
+	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <script src="../static/js/jquery.csv.min.js"></script>
+  <script src="../static/js/csv.js"></script>
+
+    <script type="text/javascript">
+      document.getElementById('btn').onclick = function() {
+          var val = document.getElementById('imagename').value;
+          document.getElementById('mapper').src = val;
+          $( '.inputstuff' ).hide();
+          $.getScript("../static/js/jquery.imgareaselect.min.js");
+          $.getScript("../static/js/jquery.imgareaselect.pack.js");
+          $.getScript("../static/js/imagemap.js", function( data, textStatus, jqxhr ) {
+            console.log( textStatus ); // Success
+            console.log( jqxhr.status ); // 200
+            console.log( "Load was performed." );
+          });
+          console.log("Done");
+      }
+    </script>
+  <script src="{{ url_for('static', filename='js/jquery.imagemapster.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 </body>
 </html>
