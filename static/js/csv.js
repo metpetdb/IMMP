@@ -70,3 +70,15 @@ function processFile(e) {
       
       return html;
     }
+
+function grey_out(item, index){
+    console.log(item);
+    $('#result').find(item).removeClass("unlinked");
+    $('#result').find(item).addClass("linked");
+}
+
+function create_visual(ids){
+  $('#result').find('tr').addClass("unlinked");
+  ids.forEach(grey_out)
+  console.log(ids)
+}

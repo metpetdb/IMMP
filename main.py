@@ -1,6 +1,22 @@
 from flask import Flask, render_template, redirect, url_for, request
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:test@localhost/immp'
+db = SQLAlchemy(app)
+
+# Database schema
+class Maps(db.Model):
+	id = db.Column(db.Integer(), primary_key=True)
+	url = db.Column(db.String(512), unique=True)
+	csv = db.Column(db.String())
+	mapping = db.Column(db.String())
+
+	def __init__(self, url):
+		self.url = url
+
+	def __repr__(self):
+		return '<URL %r>' % self.url
 
 # Index routing
 @app.route('/')

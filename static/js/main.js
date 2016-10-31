@@ -2,6 +2,7 @@
 var createMode = false;
 var x;
 var y;
+var ids = [];
 
 function mapData(x, y, id){
     var mapHTML = "<area shape=\"circle\" ";
@@ -30,8 +31,10 @@ function mapData(x, y, id){
 function dataClick(id){
     if(createMode){
         mapData(x,y,id);
+        ids.push(id);
     }
     createMode = false;
+    $('#result').removeClass("unlinked");
 }
 
 function createMapping(e, img){
@@ -59,4 +62,7 @@ function createMapping(e, img){
     y = top;
     createMode = true;
 
+    create_visual(ids);
+
 }
+
