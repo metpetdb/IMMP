@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:test@localhost/immp'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True;
 db = SQLAlchemy(app)
 
 # Database schema
@@ -14,6 +15,10 @@ class Maps(db.Model):
 
 	def __init__(self, url):
 		self.url = url
+
+	def __init__(self, url, csv):
+		self.url = url
+		self.csv = csv
 
 	def __repr__(self):
 		return '<URL %r>' % self.url
@@ -34,12 +39,28 @@ def login():
 			return render_template('profile.html', name='admin')
 	return render_template('login.html', error=error)
 
+@app.route('/new_map', methods=['GET', 'POST'])
+def newmap():
+	return render_template('newmap.html')
+
+@app.route('/postmap', methods=['POST'])
+def postmap():
+	map = Maps(request.form['URL'], request.form['csv'])
+	db.session.add(map)
+	db.session.commit()
+
 # Profile page routing
 @app.route("/profile/<name>")
 def profile(name):
 	return render_template("profile.html", name=name)
 
+# Dynamically load map from database
+@app.route('/map/<mapid>', methods=['GET', 'POST'])
+def loadmap(mapid):
+	map = Maps.query.filter_by(id = mapid).first()
+	return render_template('map.html', map=map)
+
 # Assures this file is the main before running
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0')
 
