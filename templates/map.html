@@ -85,23 +85,23 @@
   <script src="../static/js/jquery.csv.min.js"></script>
   <script src="../static/js/csv-to-json.js"></script>
   <script src="../static/js/csv.js"></script>
-
-    <script type="text/javascript">
-      $.getScript("../static/js/jquery.imgareaselect.min.js");
-      $.getScript("../static/js/jquery.imgareaselect.pack.js");
-      $.getScript("../static/js/imagemap.js", function( data, textStatus, jqxhr ) {
-        console.log( textStatus ); // Success
-        console.log( jqxhr.status ); // 200
-        console.log( "Load was performed." );
-      });
-      console.log("Done");
+  <script src="{{ url_for('static', filename='js/jquery.imagemapster.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.imgareaselect.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.imgareaselect.pack.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/imagemap.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/create_map.js')}}"></script>
+  <script>
       var csv = {{ map.csv|tojson }};
+      var mappings = {{ map.mapping|tojson }};
       if (csv != null){
       	// This means CSV data already exists for this id, table should be built accordingly
       	build_table(csv);
       }
-    </script>
-  <script src="{{ url_for('static', filename='js/jquery.imagemapster.js')}}"></script>
-  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+
+      if (mappings != null){
+      	build_mappings(mappings);
+      }
+  </script>
 </body>
 </html>

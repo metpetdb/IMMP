@@ -1,42 +1,3 @@
-// createMode indicates if we are or are not in create mode
-var createMode = false;
-var x;
-var y;
-var ids = [];
-
-function mapData(x, y, id){
-    var mapHTML = "<area shape=\"circle\" ";
-    mapHTML += "id=\"" + id + "\" ";
-    mapHTML += "data-name=\"" + id + ",all\" ";
-    mapHTML += "coords=\"" + x + "," + y + ",10\" href=\"#\">";
-    console.log(mapHTML);
-    $(".mapper-map").append(mapHTML);
-
-    map = $('#mapper');
-    map.mapster('unbind')
-    .mapster(opts)
-    .bind('mouseover', function () {
-        if (!inArea) {
-            map.mapster('set_options', all_opts)
-                .mapster('set', true, 'all')
-                .mapster('set_options', single_opts);
-        }
-    }).bind('mouseout', function () {
-        if (!inArea) {
-            map.mapster('set', false, 'all');
-        }
-    });
-}
-
-function dataClick(id){
-    if(createMode){
-        mapData(x,y,id);
-        ids.push(id);
-    }
-    createMode = false;
-    $('#result').removeClass("unlinked");
-}
-
 function createMapping(e, img){
     //Handles click of map (used for adding new mappings)
     /* Order of events:
@@ -66,3 +27,28 @@ function createMapping(e, img){
 
 }
 
+
+
+document.getElementById("save").addEventListener("click", function(){
+    console.log("Saving...");
+    var mappingString = "";
+    for (var i = 0; i < ids.length; i++){
+        if(ids[i] != null){
+            console.log("Converting id: " + i + " into string");
+            mappingString += i + "," + ids[i] + "\n";
+            console.log("Current maps to store: \n" + mappingString);
+        }
+    }
+    console.log("Pushing to database...");
+
+    var id = window.location.pathname;
+    id = id.substring(id.indexOf("id=")+3, id.length);
+
+    $.getJSON($SCRIPT_ROOT + '/postmappings', {
+    mapID: id,
+    mappings: mappingString
+      }, function(data) {
+        console.log(data.mappings);
+      });
+
+});

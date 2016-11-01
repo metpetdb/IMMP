@@ -60,6 +60,16 @@ def postcsv():
 	db.session.commit()
 	return jsonify(csv=csv)
 
+@app.route('/postmappings')
+def postmappings():
+	id = request.args.get('mapID', 0, type=int)
+	mappings = request.args.get('mappings')
+	map = Maps.query.filter_by(id=id).first()
+	map.mapping = mappings
+	print mappings
+	db.session.commit()
+	return jsonify(mappings=mappings)
+
 # Profile page routing
 @app.route("/profile/<name>")
 def profile(name):
