@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -49,13 +49,23 @@ def postmap():
 	db.session.add(map)
 	db.session.commit()
 
+@app.route('/postcsv')
+def postcsv():
+	id = request.args.get('mapID', 0, type=int)
+	csv = request.args.get('csv')
+	map = Maps.query.filter_by(id=id).first()
+	map.csv = csv
+	print csv
+	db.session.commit()
+	return jsonify(csv=csv)
+
 # Profile page routing
 @app.route("/profile/<name>")
 def profile(name):
 	return render_template("profile.html", name=name)
 
 # Dynamically load map from database
-@app.route('/map/<mapid>', methods=['GET', 'POST'])
+@app.route('/map/id=<mapid>', methods=['GET', 'POST'])
 def loadmap(mapid):
 	map = Maps.query.filter_by(id = mapid).first()
 	return render_template('map.html', map=map)

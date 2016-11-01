@@ -27,12 +27,29 @@ function processFile(e) {
         results = file.split("\n");
     }
     var csvarray = $.csv.toArrays(file);
+    var csvstring = $.csv.fromArrays(csvarray);
+    console.log(csvstring);
+    push_csv_to_db(csvstring);
     var csvtable = generateTable(csvarray);
     $('#result').empty();
     $('#result').html(csvtable);
     $('#upload').hide();
     $('#files').hide();
 
+}
+
+function push_csv_to_db(csv){
+  var id = window.location.pathname;
+  id = id.substring(id.indexOf("id=")+3, id.length);
+  console.log("Currently modifying the CSV data for ID #" + id);
+  console.log("Provided CSV data: \n" + csv);
+  csv = csvJSON(csv);
+  $.getJSON($SCRIPT_ROOT + '/postcsv', {
+    mapID: id,
+    csv: csv
+  }, function(data) {
+    console.log(data.csv);
+  });
 }
 
 // build HTML table data from an array (one or two dimensional)
