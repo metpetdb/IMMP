@@ -8,6 +8,19 @@ IMMP is a simple UI designed to allow for simple tagging of geological data in p
 VERSION
 --------------
 
+###v0.7
+####Database Implementation (We're a real app now!)
+- Every URL loaded is now given a unique entry in the database
+- Maps are loaded by going to the url /map/id=<mapID>
+- CSV data loads into table if present, "upload csv" visible if not
+ * "upload csv" sends the csv string to the database for convenient loading later on
+
+####TODO
+- Map saving
+- Map loading
+- Fix terrible CSS indication of "edit mode"
+- Split changelog into separate file and use this space for a how-to setup and contribute
+
 ###v0.6
 ####CreateMapping
 - Ability to create a mapping between a row of data and a location on the image
