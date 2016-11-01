@@ -95,12 +95,10 @@
         console.log( "Load was performed." );
       });
       console.log("Done");
-      var csv = JSON.parse({{ map.csv|tojson }});
-      console.log(csv);
+      var csv = {{ map.csv|tojson }};
       if (csv != null){
       	// This means CSV data already exists for this id, table should be built accordingly
-      	console.log("Imported map is: " + csv);
-      	hide_csv_import();
+      	build_table(csv);
       }
     </script>
   <script src="{{ url_for('static', filename='js/jquery.imagemapster.js')}}"></script>

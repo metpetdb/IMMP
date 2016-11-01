@@ -47,12 +47,18 @@ function processFile(e) {
 
 }
 
+function build_table(csv){
+  var csvarray = $.csv.toArrays(csv);
+  var csvtable = generateTable(csvarray);
+  hide_csv_import();
+  $('#result').html(csvtable);
+}
+
 function push_csv_to_db(csv){
   var id = window.location.pathname;
   id = id.substring(id.indexOf("id=")+3, id.length);
   console.log("Currently modifying the CSV data for ID #" + id);
   console.log("Provided CSV data: \n" + csv);
-  csv = csvJSON(csv);
   $.getJSON($SCRIPT_ROOT + '/postcsv', {
     mapID: id,
     csv: csv
