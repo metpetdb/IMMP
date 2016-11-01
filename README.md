@@ -13,7 +13,7 @@ VERSION
 - Every URL loaded is now given a unique entry in the database
 - Maps are loaded by going to the url /map/id=<mapID>
 - CSV data loads into table if present, "upload csv" visible if not
- * "upload csv" sends the csv string to the database for convenient loading later on
+ * "Upload csv" button sends the csv string to the database for convenient loading later on
 
 ####TODO
 - Map saving
