@@ -87,18 +87,20 @@
   <script src="../static/js/csv.js"></script>
 
     <script type="text/javascript">
-      document.getElementById('btn').onclick = function() {
-          var val = document.getElementById('imagename').value;
-          document.getElementById('mapper').src = val;
-          $( '.inputstuff' ).hide();
-          $.getScript("../static/js/jquery.imgareaselect.min.js");
-          $.getScript("../static/js/jquery.imgareaselect.pack.js");
-          $.getScript("../static/js/imagemap.js", function( data, textStatus, jqxhr ) {
-            console.log( textStatus ); // Success
-            console.log( jqxhr.status ); // 200
-            console.log( "Load was performed." );
-          });
-          console.log("Done");
+      $.getScript("../static/js/jquery.imgareaselect.min.js");
+      $.getScript("../static/js/jquery.imgareaselect.pack.js");
+      $.getScript("../static/js/imagemap.js", function( data, textStatus, jqxhr ) {
+        console.log( textStatus ); // Success
+        console.log( jqxhr.status ); // 200
+        console.log( "Load was performed." );
+      });
+      console.log("Done");
+      var csv = JSON.parse({{ map.csv|tojson }});
+      console.log(csv);
+      if (csv != null){
+      	// This means CSV data already exists for this id, table should be built accordingly
+      	console.log("Imported map is: " + csv);
+      	hide_csv_import();
       }
     </script>
   <script src="{{ url_for('static', filename='js/jquery.imagemapster.js')}}"></script>

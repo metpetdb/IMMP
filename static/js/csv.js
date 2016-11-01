@@ -19,6 +19,17 @@ uploadButton.on('click', function() {
 
 });
 
+function hide_csv_import(){
+  $('#result').empty();
+  $('#upload').hide();
+  $('#files').hide();
+}
+
+function show_csv_import(){
+  $('#upload').show();
+  $('#files').show();
+}
+
 function processFile(e) {
     var file = e.target.result,
         results;
@@ -31,10 +42,8 @@ function processFile(e) {
     console.log(csvstring);
     push_csv_to_db(csvstring);
     var csvtable = generateTable(csvarray);
-    $('#result').empty();
+    hide_csv_import();
     $('#result').html(csvtable);
-    $('#upload').hide();
-    $('#files').hide();
 
 }
 
@@ -86,6 +95,18 @@ function generateTable(data) {
   }
   
   return html;
+}
+
+function generateTableFromJSON(json) {
+  var tr;
+  for (var i = 0; i < json.length; i++) {
+      tr = '<tr onMouseover="tableOver(' + i + ')" onMouseout="tableOut( ' + i + ')" id="' + i + '" onClick="dataClick( ' + i + ')" class="data-row">\r\n';
+      tr.append("<td>" + json[i].User_Name + "</td>");
+      tr.append("<td>" + json[i].score + "</td>");
+      tr.append("<td>" + json[i].team + "</td>");
+      tr.append("</tr>");
+      $('#results').append(tr);
+  }
 }
 
 function grey_out(item, index){

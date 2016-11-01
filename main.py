@@ -15,6 +15,7 @@ class Maps(db.Model):
 
 	def __init__(self, url):
 		self.url = url
+		self.csv = None
 
 	def __init__(self, url, csv):
 		self.url = url
@@ -45,7 +46,7 @@ def newmap():
 
 @app.route('/postmap', methods=['POST'])
 def postmap():
-	map = Maps(request.form['URL'], request.form['csv'])
+	map = Maps(request.form['URL'])
 	db.session.add(map)
 	db.session.commit()
 
