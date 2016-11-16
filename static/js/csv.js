@@ -116,13 +116,15 @@ function generateTableFromJSON(json) {
 }
 
 function grey_out(item, index){
-    console.log(item);
-    $('#result').find(item).removeClass("unlinked");
-    $('#result').find(item).addClass("linked");
+    console.log("greying out" + index);
+    $('#result').find('#' + index).removeClass("unlinked");
+    $('#result').find('#' + index).addClass("linked");
 }
 
 function create_visual(ids){
+  $('.mapper').addClass("greyOut")
   $('#result').find('tr').addClass("unlinked");
+  $('#result').find('#0').removeClass("unlinked");
   ids.forEach(grey_out)
   console.log(ids)
 }

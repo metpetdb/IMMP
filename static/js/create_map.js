@@ -47,5 +47,7 @@ function dataClick(id){
         mapData(x,y,id);
     }
     createMode = false;
-    $('#result').removeClass("unlinked");
+    $('.unlinked').removeClass("unlinked");
+    $('.linked').removeClass("linked");
+    $('.greyOut').removeClass("greyOut");
 }

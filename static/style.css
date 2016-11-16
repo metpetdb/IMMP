@@ -218,3 +218,8 @@ margin:0;
   vertical-align:middle;
 
 }
+
+.greyOut {
+    opacity: 0.4 !important;
+    filter: alpha(opacity=40); /* msie */
+}
