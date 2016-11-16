@@ -198,3 +198,23 @@ margin:0;
 .disclaimer {
   color: #9d9d9d
 }
+
+.preview {
+  float: left;
+  height: 200px;
+  width: 250px;
+  padding: 10px;
+}
+
+.map-preview {
+  border: 1px solid black;
+  padding: 10px;
+  max-width:100%;
+  max-height:100%;
+}
+
+.previews {
+  display:block;
+  vertical-align:middle;
+
+}

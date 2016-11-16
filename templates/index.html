@@ -13,4 +13,20 @@
     <br>
     <p class="disclaimer">(You can send an image that you've sent before or submit a new one, we handle that!)</p>
 
+  <h2>Or you can load a map by clicking an image below</h2>
+
+  <div class="previews">
+
+  {% for map in maps %}
+  <div class="preview">
+    <a href="/map/id={{ map.id }}">
+      <img class="map-preview" src={{ map.url }} />
+    </a>
+  </div>
+  {% endfor %}
+
+  </div>
+
+
+
 {% endblock %}

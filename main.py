@@ -23,7 +23,7 @@ class Maps(db.Model):
 # Index routing
 @app.route('/')
 def index():
-	return render_template("index.html")
+	return render_template("index.html", maps=Maps.query)
 
 @app.route('/new_map', methods=['GET', 'POST'])
 def newmap():
