@@ -17,10 +17,6 @@ class Maps(db.Model):
 		self.url = url
 		self.csv = None
 
-	def __init__(self, url, csv):
-		self.url = url
-		self.csv = csv
-
 	def __repr__(self):
 		return '<URL %r>' % self.url
 
