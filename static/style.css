@@ -173,3 +173,48 @@ margin:0;
     background-color: #f5f5f5;
     border-right: 1px solid #eee;
 }
+
+.map-loader {
+  text-align: center;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+
+.maploadbox {
+    padding: 5px;
+    font-size: 1.2em;
+    width: 30vw;
+
+}
+
+.submit-button{
+    padding: 5px;
+    font-size: 2em;
+    background-color: white;
+
+
+}
+
+.disclaimer {
+  color: #9d9d9d
+}
+
+.preview {
+  float: left;
+  height: 200px;
+  width: 250px;
+  padding: 10px;
+}
+
+.map-preview {
+  border: 1px solid black;
+  padding: 10px;
+  max-width:100%;
+  max-height:100%;
+}
+
+.previews {
+  display:block;
+  vertical-align:middle;
+
+}
