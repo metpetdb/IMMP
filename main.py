@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:test@localhost/immp'
@@ -23,7 +24,7 @@ class Maps(db.Model):
 # Index routing
 @app.route('/')
 def index():
-	return render_template("index.html", maps=Maps.query)
+	return render_template("index.html", maps=Maps.query.order_by(desc(Maps.id)))
 
 @app.route('/new_map', methods=['GET', 'POST'])
 def newmap():
