@@ -66,11 +66,6 @@ def postmappings():
 	db.session.commit()
 	return jsonify(mappings=mappings)
 
-# Profile page routing
-@app.route("/profile/<name>")
-def profile(name):
-	return render_template("profile.html", name=name)
-
 # Dynamically load map from database
 @app.route('/map/id=<mapid>', methods=['GET', 'POST'])
 def loadmap(mapid):
