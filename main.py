@@ -40,7 +40,7 @@ def login():
 def newmap():
 	return render_template('newmap.html')
 
-@app.route('/postmap', methods=['POST'])
+@app.route('/postnewmap', methods=['POST'])
 def postmap():
 	map = Maps(request.form['URL'])
 	db.session.add(map)
