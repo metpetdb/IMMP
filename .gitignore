@@ -15,4 +15,6 @@ _mailinglist
 .cache/
 .idea/
 TestData
-
+.vagrant
+.gitignore~
+..gitignore.un~
