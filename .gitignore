@@ -15,6 +15,13 @@ _mailinglist
 .cache/
 .idea/
 TestData
-.vagrant
 .gitignore~
 ..gitignore.un~
+
+# Vagrant stuff
+acceptance_config.yml
+boxes/*
+/.vagrant
+/website/.vagrant
+/website/build
+/vagrant-spec.config.rb
