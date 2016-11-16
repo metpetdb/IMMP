@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="map-loader">
+  <h2>Enter the URL for an image here</h2>
 
-<p> More coming soon </p>
-
+    <form class="form-inline" method="post" action="/postnewmap">
+      <input class="maploadbox" id="URL" name="URL" type="text" />
+      <br>
+      <br>
+      <input class="btn-primary" type='submit' />
+    </form>
+    <br>
+    <p class="disclaimer">(You can send an image that you've sent before or submit a new one, we handle that!)</p>
 
 {% endblock %}
