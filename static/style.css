@@ -2,9 +2,19 @@
  * Base structure
  */
 
+ /* Fix for footer at bottom of page*/
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
 }
 
 
@@ -121,8 +131,13 @@ body {
   background-color: #c9c;
 }
 .footer {
-clear:both;
-padding:5px 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
 }
 .footer p {
 margin:0;
@@ -142,7 +157,7 @@ margin:0;
 
 #save {
   position: fixed;
-  bottom: 10px;
+  bottom: 50px;
   right: 10px;
 }
 
