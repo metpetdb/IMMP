@@ -31,9 +31,14 @@ def newmap():
 
 @app.route('/postnewmap', methods=['POST'])
 def postmap():
-	map = Maps(request.form['URL'])
-	db.session.add(map)
-	db.session.commit()
+	url = request.form['URL']
+	map = Maps.query.filter_by(url=url).first()
+	if(map == None):
+		map = Maps(url)
+		db.session.add(map)
+		db.session.commit()
+	return redirect('/map/id='+str(map.id))
+
 
 @app.route('/postcsv')
 def postcsv():
