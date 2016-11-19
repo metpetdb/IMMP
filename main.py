@@ -47,7 +47,6 @@ def postcsv():
 	csv = request.args.get('csv')
 	map = Maps.query.filter_by(id=id).first()
 	map.csv = csv
-	print csv
 	db.session.commit()
 	return jsonify(csv=csv)
 
@@ -57,7 +56,6 @@ def postmappings():
 	mappings = request.args.get('mappings')
 	map = Maps.query.filter_by(id=id).first()
 	map.mapping = mappings
-	print mappings
 	db.session.commit()
 	return jsonify(mappings=mappings)
 
