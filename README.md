@@ -9,8 +9,18 @@ VERSION
 --------------
 
 ####TODO
-- Fix terrible CSS indication of "edit mode"
 - Split changelog into separate file and use this space for a how-to setup and contribute
+
+###v0.8
+####Load Page And A Usable Experience
+- Introduced "Create Or Load Map" Homepage
+ - Maps can be loaded via URL or created with unique URL entry
+ - Thumbnails of all created maps in database will appear on home page
+- Bugfixes on map page
+ - Fixed terrible CSS indication of "edit mode"
+ - Fixed footer CSS
+- Broke page down into templates
+- Deleted unnecessary templates
 
 ###v0.7
 ####Database Implementation (We're a real app now!)
