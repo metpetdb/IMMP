@@ -17,7 +17,7 @@ function createMapping(e, img){
     var left = Math.round( (e.clientX - offset_l) );
     var top = Math.round( (e.clientY - offset_t) );
 
-    console.log("Left: " + left + " Top: " + top);
+    // console.log("Left: " + left + " Top: " + top);
 
     x = left;
     y = top;
@@ -34,12 +34,12 @@ document.getElementById("save").addEventListener("click", function(){
     var mappingString = "";
     for (var i = 0; i < ids.length; i++){
         if(ids[i] != null){
-            console.log("Converting id: " + i + " into string");
+            // console.log("Converting id: " + i + " into string");
             mappingString += i + "," + ids[i] + "\n";
-            console.log("Current maps to store: \n" + mappingString);
+            // console.log("Current maps to store: \n" + mappingString);
         }
     }
-    console.log("Pushing to database...");
+    // console.log("Pushing to database...");
 
     var id = window.location.pathname;
     id = id.substring(id.indexOf("id=")+3, id.length);
@@ -48,7 +48,7 @@ document.getElementById("save").addEventListener("click", function(){
     mapID: id,
     mappings: mappingString
       }, function(data) {
-        console.log(data.mappings);
+        // console.log(data.mappings);
       });
 
 });
