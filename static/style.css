@@ -216,10 +216,29 @@ margin:0;
 .previews {
   display:block;
   vertical-align:middle;
+}
 
+.preview {
+  position: relative;
+  float:left;
+  margin:5px;
 }
 
 .greyOut {
     opacity: 0.4 !important;
     filter: alpha(opacity=40); /* msie */
+}
+
+
+div.preview input.delete {
+    top:0;
+    left:79%;
+    position:absolute;
+    display:none;
+}
+div.preview:hover img{
+    opacity:0.5;
+}
+div.preview:hover input {
+    display: block;
 }

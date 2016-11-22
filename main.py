@@ -59,6 +59,14 @@ def postmappings():
 	db.session.commit()
 	return jsonify(mappings=mappings)
 
+@app.route('/deletemap')
+def deletemap():
+	id = request.args.get('mapID', 0, type=int)
+	map = Maps.query.filter_by(id=id).first()
+	db.session.delete(map)
+	db.session.commit()
+	return "success"
+
 # Dynamically load map from database
 @app.route('/map/id=<mapid>', methods=['GET', 'POST'])
 def loadmap(mapid):
