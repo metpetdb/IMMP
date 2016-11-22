@@ -28,12 +28,10 @@ var inArea,
         onMouseover: function (data) {
             inArea = true;
             $( "#" + data.key ).addClass("hovered");
-            console.log(data.key + " added active");
         },
         onMouseout: function (data) {
             inArea = false;
             $( "#" + data.key ).removeClass("hovered");
-            console.log(data.key + " removed active");
         }
     };
     opts = $.extend({}, all_opts, initial_opts, single_opts);
@@ -63,7 +61,6 @@ function tableOver(num){
     $( "#" + num ).addClass("hovered");
     map.mapster('set_options', single_opts)
         .mapster('set', true, "" + num);
-    console.log(num + " added active");
 
 }
 
@@ -76,7 +73,6 @@ function tableOut(num){
 }
 
 $(document).ready(function() {
-    console.log("ready");
   $('img').imgAreaSelect({
     handles: true
   });

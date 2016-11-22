@@ -33,13 +33,11 @@ function show_csv_import(){
 function processFile(e) {
     var file = e.target.result,
         results;
-    console.log(file);
     if (file && file.length) {
         results = file.split("\n");
     }
     var csvarray = $.csv.toArrays(file);
     var csvstring = $.csv.fromArrays(csvarray);
-    console.log(csvstring);
     push_csv_to_db(csvstring);
     var csvtable = generateTable(csvarray);
     hide_csv_import();
@@ -57,13 +55,10 @@ function build_table(csv){
 function push_csv_to_db(csv){
   var id = window.location.pathname;
   id = id.substring(id.indexOf("id=")+3, id.length);
-  console.log("Currently modifying the CSV data for ID #" + id);
-  console.log("Provided CSV data: \n" + csv);
   $.getJSON($SCRIPT_ROOT + '/postcsv', {
     mapID: id,
     csv: csv
   }, function(data) {
-    console.log(data.csv);
   });
 }
 
@@ -116,13 +111,13 @@ function generateTableFromJSON(json) {
 }
 
 function grey_out(item, index){
-    console.log(item);
-    $('#result').find(item).removeClass("unlinked");
-    $('#result').find(item).addClass("linked");
+    $('#result').find('#' + index).removeClass("unlinked");
+    $('#result').find('#' + index).addClass("linked");
 }
 
 function create_visual(ids){
+  $('.mapper').addClass("greyOut")
   $('#result').find('tr').addClass("unlinked");
-  ids.forEach(grey_out)
-  console.log(ids)
+  $('#result').find('#0').removeClass("unlinked");
+  ids.forEach(grey_out);
 }

@@ -31,3 +31,8 @@ background:#999;
 .active {
 	color: #ffffff;
 }
+
+.greyOut {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+}

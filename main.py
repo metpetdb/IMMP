@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:test@localhost/immp'
@@ -23,28 +24,22 @@ class Maps(db.Model):
 # Index routing
 @app.route('/')
 def index():
-	return render_template("profile.html")
-
-# Login page routing
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-	error = None
-	if request.method == 'POST':
-		if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-			error = 'Invalid credentials. Please try again.'
-		else:
-			return render_template('profile.html', name='admin')
-	return render_template('login.html', error=error)
+	return render_template("index.html", maps=Maps.query.order_by(desc(Maps.id)))
 
 @app.route('/new_map', methods=['GET', 'POST'])
 def newmap():
 	return render_template('newmap.html')
 
-@app.route('/postmap', methods=['POST'])
+@app.route('/postnewmap', methods=['POST'])
 def postmap():
-	map = Maps(request.form['URL'])
-	db.session.add(map)
-	db.session.commit()
+	url = request.form['URL']
+	map = Maps.query.filter_by(url=url).first()
+	if(map == None):
+		map = Maps(url)
+		db.session.add(map)
+		db.session.commit()
+	return redirect('/map/id='+str(map.id))
+
 
 @app.route('/postcsv')
 def postcsv():
@@ -52,7 +47,6 @@ def postcsv():
 	csv = request.args.get('csv')
 	map = Maps.query.filter_by(id=id).first()
 	map.csv = csv
-	print csv
 	db.session.commit()
 	return jsonify(csv=csv)
 
@@ -62,7 +56,6 @@ def postmappings():
 	mappings = request.args.get('mappings')
 	map = Maps.query.filter_by(id=id).first()
 	map.mapping = mappings
-	print mappings
 	db.session.commit()
 	return jsonify(mappings=mappings)
 
