@@ -1,5 +1,6 @@
 IMMP - Image Map for MetPet
 ==============
+Check out IMMP at [IMMP.metpetdb.com](http://immp.metpetdb.com)
 
 INTRODUCTION
 --------------
