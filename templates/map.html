@@ -4,20 +4,20 @@
     <!-- I know a lot less about this part -->    
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 csvstuff">
+        <div class="col-sm-12 col-md-12 main">
+            <div id="MapWrapper" style="margin:auto; width:50%;">
+              <img src=" {{ map.url }} " class="mapper" id="mapper" usemap="#mapper-map" onclick="createMapping(event, this)"/>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-12 csvstuff">
           <input type=file id=files />
           <button id=upload>Upload CSV file</button>
           <br/><br/>
           <div class="result">
             <table id="result" border="1"></table>
-          </div>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-          <div class="row placeholders">
-            <img src=" {{ map.url }} " class="mapper" id="mapper" usemap="#mapper-map" onclick="createMapping(event, this)"/>
-            <map name="mapper-map" class="mapper-map">
-            </map>
           </div>
         </div>
       </div>
@@ -26,6 +26,8 @@
         Image Map for MetPet v0.5
       </div>
     </div>
+      <map name="mapper-map" class="mapper-map">
+      </map>
 
     <div id="save"><button type="button">Save</button></div>
 
@@ -36,20 +38,26 @@
   <script src="../static/js/csv.js"></script>
   <script src="{{ url_for('static', filename='js/jquery.imagemapster.js')}}"></script>
   <script src="{{ url_for('static', filename='js/jquery.imgareaselect.min.js')}}"></script>
-  <script src="{{ url_for('static', filename='js/jquery.imgareaselect.pack.js')}}"></script>
   <script src="{{ url_for('static', filename='js/imagemap.js')}}"></script>
   <script src="{{ url_for('static', filename='js/main.js')}}"></script>
   <script src="{{ url_for('static', filename='js/create_map.js')}}"></script>
   <script>
+    $( document ).ready(function() {
       var csv = {{ map.csv|tojson }};
       var mappings = {{ map.mapping|tojson }};
       if (csv != null){
       	// This means CSV data already exists for this id, table should be built accordingly
       	build_table(csv);
+      } else {
+        console.log("No CSV found");
       }
 
       if (mappings != null){
+        console.log("Building mappings");
       	build_mappings(mappings);
+      } else {
+        console.log("No mappings found");
       }
+    });
   </script>
 {% endblock %}
