@@ -18,15 +18,16 @@
   <div class="previews">
 
   {% for map in maps %}
-  <div class="preview">
-    <a href="/map/id={{ map.id }}">
+  <div class="preview" id="{{ map.id }}">
+    <a href="/map/id={{ map.id }}" id="{{ map.id }}">
       <img class="map-preview" src={{ map.url }} />
     </a>
+    <input class="delete" type="button" value="&#10006;" />
   </div>
   {% endfor %}
 
   </div>
 
-
+  <script src="{{ url_for('static', filename='js/home.js')}}"></script>
 
 {% endblock %}
