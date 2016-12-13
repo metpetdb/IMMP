@@ -1,23 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <!-- I know a lot less about this part -->    
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-12 col-md-12 main">
-            <div id="MapWrapper" style="margin:auto; width:50%;">
-              <img src=" {{ map.url }} " class="mapper" id="mapper" usemap="#mapper-map" onclick="createMapping(event, this)"/>
-            </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12 col-md-12 csvstuff">
+        <div class="col-sm-3 col-md-2 csvstuff">
           <input type=file id=files />
           <button id=upload>Upload CSV file</button>
           <br/><br/>
           <div class="result">
             <table id="result" border="1"></table>
+          </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <div class="row placeholders">
+            <img src=" {{ map.url }} " class="mapper" id="mapper" usemap="#mapper-map" onclick="createMapping(event, this)"/>
+            <map name="mapper-map" class="mapper-map">
+            </map>
           </div>
         </div>
       </div>
