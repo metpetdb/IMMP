@@ -5,6 +5,11 @@ var y;
 var ids = [];
 
 function mapData(x, y, id){
+    console.log("Mapping id: " + id + " to coordinates " + x + "," + y);
+    if (id == " " || x == null){
+        console.log("Invalid ID");
+        return;
+    }
     ids[id] = x + "," + y; // adds to ID array
     var mapHTML = "<area shape=\"circle\" ";
     mapHTML += "id=\"" + id + "\" ";
@@ -30,7 +35,7 @@ function mapData(x, y, id){
 
 function build_mappings(mappingsString){
     var maps = mappingsString.split('\n');
-    for(var i = 0; i < maps.length; i++){
+    for(var i = 0; i < maps.length - 1; i++){
         to_map = maps[i].split(',');
         mapData(to_map[1],to_map[2],to_map[0]);
     }
