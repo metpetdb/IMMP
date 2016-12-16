@@ -1,7 +1,7 @@
 Installing IMMP
 ==============
 
-These instructions are written for an Ubuntu deployment (or Vagrant installation), specifically 16.04 and earlier. 
+These instructions are written for a local Ubuntu deployment (or Vagrant installation), specifically 16.04 and earlier. Specific instructions for web deployment (mostly Apache stuff) can be found in Apache.md [coming soon]
 
 ####Clone repo and change directories into the repo
 
@@ -10,9 +10,13 @@ These instructions are written for an Ubuntu deployment (or Vagrant installation
 
 ####Python, Pip, Postgres, and Psycopg2 installation
 
-    $ sudo apt-get install python python-dev python-pip postgresql python-psycopg2 libpq-dev
+    $ sudo apt-get install python python-dev python-pip python-psycopg2 libpq-dev
 
 ####Virtualenv installation
+
+Virtual environments allow for sets of python packages to operate independently, assuring that the state of your system and the state of the project do not interfere with each other. To install VirtualEnv, issue the following pip command
+
+    $ pip install virtualenv
 
 Upon initial setup, a new virtualenvironment will need to be generated with the following command.
 
@@ -32,6 +36,10 @@ To deactivate the virtual environment
 
 
 ####Flask and SQLAlchemy installation
+
+First, Postgres must be installed
+    
+    $ sudo apt-get install postgresql
 
 You can install these at root level with `sudo pip`, but it is recommended you install them within the virtual environment
 
