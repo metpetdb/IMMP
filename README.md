@@ -10,7 +10,7 @@ IMMP is built on Flask, a Python web framework. Many open source technologies ar
 
 Version
 --------------
-###Current Version: 0.8
+###Current Version: 0.9
 
 To keep up with what's changed between versions of IMMP, check out [our changelog](CHANGELOG.md)
 

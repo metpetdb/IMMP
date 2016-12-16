@@ -1,6 +1,25 @@
 IMMP - ChangeLog
 ==============
 
+###v0.9
+####Cleaning up for the beta
+Features:
+
+- UI Overhaul
+- Delete button added to home page maps
+ - Redesigned CSV table
+ - Swapped placement of CSV and map (imagemapster maps can't be centered)
+ - CSS cleaned up, csv.css removed
+ - Coloring added to tables at all times
+- Delete button for mappings
+
+Bugfixes:
+
+- Deployment bugs fixed (setup guide written to prevent future issues)
+- Order of load issues on map page fixed
+- Bootstrap-related 404 handled
+- Invalid mappings ignored and automatically purged upon load
+
 ###v0.8
 ####Load Page And A Usable Experience
 - Introduced "Create Or Load Map" Homepage
