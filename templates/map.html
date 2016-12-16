@@ -3,20 +3,19 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 csvstuff">
-          <input type=file id=files />
-          <button id=upload>Upload CSV file</button>
-          <br/><br/>
-          <div class="result">
-            <table id="result" border="1"></table>
-          </div>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-          <div class="row placeholders">
+        <div class="col-sm-9 main">
             <img src=" {{ map.url }} " class="mapper" id="mapper" usemap="#mapper-map" onclick="createMapping(event, this)"/>
-            <map name="mapper-map" class="mapper-map">
-            </map>
+        </div>
+        <div class="col-sm-3 csvstuff">
+          <div class=" panel panel-default">
+            <div class="panel-heading">Collected Data (CSV)</div>
+            <div class="panel-body">
+            <input type=file id=files />
+              <button id=upload>Upload CSV file</button>
+              <div class="result">
+                <table class="table csvtable table-bordered" id="result" border="1"></table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -57,6 +56,7 @@
       } else {
         console.log("No mappings found");
       }
+
     });
   </script>
 {% endblock %}
