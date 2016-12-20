@@ -44,7 +44,12 @@ body {
 @media (min-width: 768px) {
   .main {
     padding-right: 40px;
-    padding-left: 40px;
+    padding-left: 20px;
+    padding-top: 10px;
+    overflow-x: auto;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    height: 90vh;
+
   }
 }
 .main .page-header {
