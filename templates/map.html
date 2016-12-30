@@ -56,6 +56,14 @@
       } else {
         console.log("No mappings found");
       }
+    
+    $('.delete').click(function(){
+
+        console.log($(this).parent().attr('id'));
+        delete_mapping($(this).parent().attr('id'));
+        return false;
+
+    });
 
     });
   </script>

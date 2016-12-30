@@ -52,3 +52,14 @@ document.getElementById("save").addEventListener("click", function(){
       });
 
 });
+
+$(document).ready(function(){
+    $('.delete').click(function(){
+
+        console.log($(this).parent().attr('id'));
+        delete_mapping($(this).parent().attr('id'));
+        $(this).parent().remove();
+        return false;
+
+    });
+});

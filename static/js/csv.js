@@ -79,8 +79,9 @@ function generateTable(data) {
     for(var row in data) {
       //HTML addition for new table row (one for every row in CSV)
       html += '<tr onMouseover="tableOver(' + row + ')" onMouseout="tableOut( ' + row + ')" id="' + row + '" onClick="dataClick( ' + row + ')" class="data-row">\r\n';
+      html += '<td id=' + row + '>' + '<input class="delete" type="button" value="&#10006;" />' + '</td>\r\n';
       for(var item in data[row]) {
-        html += '<td>' + data[row][item] + '</td>\r\n';
+        html += '<td >' + data[row][item] + '</td>\r\n';
       }
       html += '</tr>\r\n';
     }

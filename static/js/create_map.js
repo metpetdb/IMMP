@@ -10,11 +10,11 @@ function mapData(x, y, id){
         console.log("Invalid ID");
         return;
     }
-    ids[id] = x + "," + y; // adds to ID array
     var mapHTML = "<area shape=\"circle\" ";
     mapHTML += "id=\"" + id + "\" ";
     mapHTML += "data-name=\"" + id + ",all\" ";
     mapHTML += "coords=\"" + x + "," + y + ",10\" href=\"#\">";
+    console.log(mapHTML);
     $(".mapper-map").append(mapHTML);
 
     map = $('#mapper');
@@ -38,8 +38,18 @@ function build_mappings(mappingsString){
     for(var i = 0; i < maps.length - 1; i++){
         to_map = maps[i].split(',');
         mapData(to_map[1],to_map[2],to_map[0]);
+        ids[to_map[0]] = to_map[1] + "," + to_map[2]; // adds to ID array
     }
 
+}
+
+function delete_mapping(id){
+    console.log(ids);
+    ids.splice(id, 1);
+    console.log(ids);
+    toremove = "#"+id;
+    console.log(toremove);
+    console.log("Removed id " + id + " from ids and mapper-map");
 }
 
 function dataClick(id){
