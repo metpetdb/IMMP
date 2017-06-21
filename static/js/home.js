@@ -9,11 +9,12 @@ function deleteMap(id){
 $(document).ready(function(){
     console.log("listening for deletes");
     $('.delete').click(function(){
-
-    	console.log($(this).parent().attr('id'));
-    	deleteMap($(this).parent().attr('id'));
-        $(this).parent().remove();
-        return false;
-
+        var conf = confirm("Delete this map?");
+        if(conf){
+        	console.log($(this).parent().attr('id'));
+        	deleteMap($(this).parent().attr('id'));
+            $(this).parent().remove();
+            return false;
+        }
     });
 });
