@@ -1,5 +1,6 @@
 // createMode indicates if we are or are not in create mode
 var createMode = false;
+var deleteMode = false;
 var x;
 var y;
 var ids = [];
@@ -8,6 +9,10 @@ function mapData(x, y, id){
     console.log("Mapping id: " + id + " to coordinates " + x + "," + y);
     if (id == " " || x == null){
         console.log("Invalid ID");
+        return;
+    }
+    if(ids[id]){
+        console.log("Data already mapped");
         return;
     }
     ids[id] = x + "," + y; // adds to ID array
@@ -33,13 +38,13 @@ function mapData(x, y, id){
     });
 }
 
+
 function build_mappings(mappingsString){
     var maps = mappingsString.split('\n');
     for(var i = 0; i < maps.length - 1; i++){
         to_map = maps[i].split(',');
         mapData(to_map[1],to_map[2],to_map[0]);
     }
-
 }
 
 function dataClick(id){

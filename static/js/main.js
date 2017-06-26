@@ -23,7 +23,6 @@ function createMapping(e, img){
 }
 
 
-
 document.getElementById("save").addEventListener("click", function(){
     console.log("Saving...");
     var mappingString = "";
