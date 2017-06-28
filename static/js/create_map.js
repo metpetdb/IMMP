@@ -55,8 +55,8 @@ function unmapData(id){
             x = coords[0];
             y = coords[1];
             mapHTML += "<area shape=\"circle\" ";
-            mapHTML += "id=\"" + id + "\" ";
-            mapHTML += "data-name=\"" + id + ",all\" ";
+            mapHTML += "id=\"" + row + "\" ";
+            mapHTML += "data-name=\"" + row + ",all\" ";
             mapHTML += "coords=\"" + x + "," + y + ",10\" href=\"#\">";
 
             $(".mapper-map").append(mapHTML);
