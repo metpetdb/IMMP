@@ -73,7 +73,6 @@ function generateTable(data) {
     for(var item in data) {
       html += '<td>' + data[item] + '</td>\r\n';
     }
-      html += '<td><button class="btn-danger">Delete Tag</button></td>\r\n';
       html += '</tr>\r\n';
   }
   if(data[0].constructor === Array) {
@@ -83,7 +82,7 @@ function generateTable(data) {
       for(var item in data[row]) {
         html += '<td>' + data[row][item] + '</td>\r\n';
       }
-      html += '<td><button class="btn-danger">Delete Tag</button></td>\r\n';
+      html += '<td><button class="btn-danger" onclick="unmapData( ' + row + ' )">Delete Tag</button></td>\r\n';
       html += '</tr>\r\n';
     }
   }
@@ -93,7 +92,6 @@ function generateTable(data) {
       for(var item in data[row]) {
         html += '<td>' + item + ':' + data[row][item] + '</td>\r\n';
       }
-        html += '<td><button class="btn-danger">Delete Tag</button></td>\r\n';
         html += '</tr>\r\n';    }
   }
   

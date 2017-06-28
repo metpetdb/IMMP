@@ -38,6 +38,46 @@ function mapData(x, y, id){
     });
 }
 
+function unmapData(id){
+    var mapHTML;
+    console.log("Delete tag for id: " + id + " from coords " + ids[id]);
+    if (id == " "){
+        console.log("Invalid ID");
+        return;
+    }
+    $(".mapper-map").empty(); //clear html ?
+    ids[id] = "";
+
+    for (var row in ids){
+        var coords = ids[row].split(',');
+        console.log(coords[0] + "," + coords[1]);
+        if (coords[1]){
+            x = coords[0];
+            y = coords[1];
+            mapHTML += "<area shape=\"circle\" ";
+            mapHTML += "id=\"" + id + "\" ";
+            mapHTML += "data-name=\"" + id + ",all\" ";
+            mapHTML += "coords=\"" + x + "," + y + ",10\" href=\"#\">";
+
+            $(".mapper-map").append(mapHTML);
+            map = $('#mapper');
+            map.mapster('unbind')
+            .mapster(opts)
+            .bind('mouseover', function () {
+                if (!inArea) {
+                    map.mapster('set_options', all_opts)
+                        .mapster('set', true, 'all')
+                        .mapster('set_options', single_opts);
+                }
+            }).bind('mouseout', function () {
+                if (!inArea) {
+                    map.mapster('set', false, 'all');
+                }
+            });
+        }
+        row++;
+    }
+}
 
 function build_mappings(mappingsString){
     var maps = mappingsString.split('\n');
