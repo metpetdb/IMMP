@@ -7,7 +7,7 @@ var ids = [];
 
 function insertAndMapData(x, y, id){
     console.log("Mapping id: " + id + " to coordinates " + x + "," + y);
-    if (id == " " || x == null){
+    if (id === " " || x == null){
         console.log("Invalid ID");
         return;
     }
@@ -45,12 +45,12 @@ function mapData(x,y,id){
 function unmapData(id){
     var mapHTML;
     console.log("Delete tag for id: " + id + " from coords " + ids[id]);
-    if (id == " "){
+    if (id === ""){
         console.log("Invalid ID");
         return;
     }
     
-    ids.splice(id, 1);
+    ids[id] = "";
 
     $(".mapper-map").empty(); //clear html ?
 
@@ -59,9 +59,11 @@ function unmapData(id){
             
     for (var row in ids){
         console.log(row + " " + ids[row]);
-        var coords = ids[row].split(',');
-        console.log(coords[0] + "," + coords[1]);
-        mapData(x,y,id);
+        if(ids[row] != ""){
+            var coords = ids[row].split(',');
+            console.log(coords[0] + "," + coords[1]);
+            mapData(x,y,id);
+        }
     }
 }
 
