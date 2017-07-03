@@ -1,8 +1,11 @@
 // createMode indicates if we are or are not in create mode
 var createMode = false;
 var deleteMode = false;
-var x;
-var y;
+
+/** Coordinates of last point clicked on image. */
+var x, y;
+
+/** data store for tagged features/rows */
 var ids = [];
 
 function insertAndMapData(x, y, id){
@@ -18,6 +21,38 @@ function insertAndMapData(x, y, id){
     ids[id] = x + "," + y; // adds to ID array
     mapData(x,y,id);
 }
+
+//////
+/*var a = jQuery('<area/>', { 'data-name': "1,all" ,  });
+
+var a = $('<area />', {
+    'shape': 'circle',
+    'id': '1',
+    'da'
+})
+a['shape'] = 'circle';
+a['id'] = '1';
+a['data-name'] = '1,all';
+a['coords'] = '191,81,10';
+a['href'] = '#';
+$(".mapper-map").append(a);
+
+map = $('#mapper');
+    map.mapster('unbind')
+    .mapster(opts)
+    .bind('mouseover', function () {
+        if (!inArea) {
+            map.mapster('set_options', all_opts)
+                .mapster('set', true, 'all')
+                .mapster('set_options', single_opts);
+        }
+    }).bind('mouseout', function () {
+        if (!inArea) {
+            map.mapster('set', false, 'all');
+        }
+    });*/
+
+//////
 
 function mapData(x,y,id){
     var mapHTML = "<area shape=\"circle\" ";
@@ -50,7 +85,7 @@ function unmapData(id){
         return;
     }
     
-    ids[id] = "";
+    delete ids[id];
 
     $(".mapper-map").empty(); //clear html ?
 
@@ -59,10 +94,10 @@ function unmapData(id){
             
     for (var row in ids){
         console.log(row + " " + ids[row]);
-        if(ids[row] != ""){
+        if(ids[row]){
             var coords = ids[row].split(',');
             console.log(coords[0] + "," + coords[1]);
-            mapData(x,y,id);
+            mapData(coords[0],coords[1],row);
         }
     }
 }
@@ -75,11 +110,18 @@ function build_mappings(mappingsString){
     }
 }
 
+/**
+ * onClick handler which is attached to the rows after clicking on image
+ * 
+ * 
+ */
 function dataClick(id){
-    if(createMode){
+    if (createMode) {
         insertAndMapData(x,y,id);
     }
     createMode = false;
+
+    // use toggle class, elements same as line 120 in csv.js @ 1111c0a373f706c7a6e0d8aa46d3a06258ea7a27
     $('.unlinked').removeClass("unlinked");
     $('.linked').removeClass("linked");
     $('.greyOut').removeClass("greyOut");
