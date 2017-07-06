@@ -42,3 +42,7 @@ document.getElementById("save").addEventListener("click", function(){
       });
 
 });
+
+document.getElementById("help").addEventListener("click",function(){
+    var  instr = alert("To add a tag, click anywhere on the image, then click the data row you wish to tag to that location. A red X will appear which allows you to delete tags you've created. Click 'Save' in the bottom right to save your tags once you've finished.")
+});

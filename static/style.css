@@ -161,6 +161,10 @@ margin:0;
   right: 10px;
 }
 
+#help {
+  float:left;
+}
+
 .csvstuff {
     position: fixed;
     top: 51px;

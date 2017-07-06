@@ -145,7 +145,7 @@ function generateTableFromJSON(json) {
 }
 
 /**
- * refactor to use $.fn.toggleClass
+ * refactor to use $.fn.toggleClass?
  */
 function grey_out(item, index){
     $('#result').find('#' + index).removeClass("unlinked");
