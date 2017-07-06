@@ -1,5 +1,6 @@
 var fileInput = $('#files');
 var uploadButton = $('#upload');
+var deleteTagButton = $('#deleteTag');
 
 uploadButton.on('click', function uploadButtonClick() {
     if (!window.FileReader) {
@@ -95,15 +96,6 @@ function normalizeCSV(csvData) {
   }
 }
 
-/**
-var input = ['juan'];
-// var input = ['juan', 'dos', 'tres'];
-// var input = [['juan'], ['dos'], ['tres']];
-var output = normalizeCSV(input);
-
-console.log(output);
-**/
-
 // build HTML table data from an array (one or two dimensional)
 /**
  * normalizes data
@@ -130,10 +122,10 @@ function generateTable(data) {
   for(var row in data) {
     //HTML addition for new table row (one for every row in CSV)
     html += '<tr onMouseover="tableOver(' + row + ')" onMouseout="tableOut( ' + row + ')" id="' + row + '" onClick="dataClick( ' + row + ')" class="data-row">\r\n';
+    html += '<td><button id=deleteTag' + row + ' class="btn-danger btn-xs" style="display:none;" onclick="unmapData( ' + row + ' )">x</button></td>\r\n';
     for(var item in data[row]) {
       html += '<td>' + data[row][item] + '</td>\r\n';
     }
-    html += '<td><button class="btn-danger" onclick="unmapData( ' + row + ' )">Delete Tag</button></td>\r\n';
     html += '</tr>\r\n';
   }
 

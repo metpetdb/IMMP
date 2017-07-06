@@ -23,7 +23,7 @@ function insertAndMapData(x, y, id){
 }
 
 //////
-/*var a = jQuery('<area/>', { 'data-name': "1,all" ,  });
+/*var a = jQuery('<area/>', { 'shape': "circle", 'id': id, 'data-name': "1,all", 'coords': x + "," + y + ",10", 'href': "#" });
 
 var a = $('<area />', {
     'shape': 'circle',
@@ -36,21 +36,7 @@ a['data-name'] = '1,all';
 a['coords'] = '191,81,10';
 a['href'] = '#';
 $(".mapper-map").append(a);
-
-map = $('#mapper');
-    map.mapster('unbind')
-    .mapster(opts)
-    .bind('mouseover', function () {
-        if (!inArea) {
-            map.mapster('set_options', all_opts)
-                .mapster('set', true, 'all')
-                .mapster('set_options', single_opts);
-        }
-    }).bind('mouseout', function () {
-        if (!inArea) {
-            map.mapster('set', false, 'all');
-        }
-    });*/
+*/
 
 //////
 
@@ -60,6 +46,8 @@ function mapData(x,y,id){
     mapHTML += "data-name=\"" + id + ",all\" ";
     mapHTML += "coords=\"" + x + "," + y + ",10\" href=\"#\">";
     $(".mapper-map").append(mapHTML);
+
+    $('#deleteTag' + id).show();
 
     map = $('#mapper');
     map.mapster('unbind')
@@ -84,6 +72,8 @@ function unmapData(id){
         console.log("Invalid ID");
         return;
     }
+
+    $('#deleteTag' + id).hide();
     
     delete ids[id];
 
