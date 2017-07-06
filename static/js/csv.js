@@ -155,6 +155,6 @@ function grey_out(item, index){
 function create_visual(ids){
   $('.mapper').addClass("greyOut")
   $('#result').find('tr').addClass("unlinked");
-  $('#result').find('#0').removeClass("unlinked");
+  // $('#result').find('#0').removeClass("unlinked");
   ids.forEach(grey_out);
 }
