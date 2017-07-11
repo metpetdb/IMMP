@@ -161,10 +161,16 @@ margin:0;
   right: 10px;
 }
 
-#help {
+#cancel {
   position: fixed;
   bottom: 50px;
   right: 70px;
+}
+
+#help {
+  position: fixed;
+  bottom: 50px;
+  right: 141px;
 }
 
 .csvstuff {
