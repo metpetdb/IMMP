@@ -6,6 +6,12 @@ function createMapping(e, img){
     3. Wait for user to click data to map to (TODO)
     4. Send to "mapData" function that takes x, y, and id, and adds to map (TODO)
     */
+
+    //don't allow creation of mappings while delete mode active
+    if(deleteMode){
+        return;
+    }
+
     var offset = $(".mapper").offset();
 
     var offset_t = $(img).offset().top - $(window).scrollTop();
@@ -54,5 +60,16 @@ document.getElementById("cancel").addEventListener("click", function(){
 })
 
 document.getElementById("help").addEventListener("click",function(){
-    var  instr = alert("To add a tag, click anywhere on the image, then click the data row you wish to tag to that location. A red X will appear which allows you to delete tags you've created. Click 'Save' in the bottom right to save your tags once you've finished.")
+    alert("To add a tag, click anywhere on the image, then click the data row you wish to tag to that location. A red X will appear which allows you to delete tags you've created. Click 'Save' in the bottom right to save your tags once you've finished.")
 });
+
+document.getElementById("deleteTags").addEventListener("click", function(){
+    if(deleteMode === true){
+        deleteMode = false;
+        hideDeletes();
+    }
+    else{
+        deleteMode = true;
+        showDeletes();
+    }
+})

@@ -12,7 +12,6 @@
           </div>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
           <div class="row placeholders">
             <img src=" {{ map.url }} " class="mapper" id="mapper" usemap="#mapper-map" onclick="createMapping(event, this)"/>
             <map name="mapper-map" class="mapper-map">
@@ -27,6 +26,7 @@
     </div>
       <map name="mapper-map" class="mapper-map">
       </map>
+    <div id="deleteTags"><button id="delete" class="btn btn-danger">Delete tags</button><button id="create" class="btn btn-success" style="display:none;">Create tags</button></div>
     <div id="help"><button type="button" class="btn btn-info">Help</button></div>
     <div id="cancel"><button type="button" class="btn btn-default">Cancel</button></div>
     <div id="save"><button type="button" class="btn btn-success">Save</button></div>

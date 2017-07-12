@@ -47,8 +47,9 @@ function mapData(x,y,id){
     mapHTML += "data-name=\"" + id + ",all\" ";
     mapHTML += "coords=\"" + x + "," + y + ",10\" href=\"#\">";
     $(".mapper-map").append(mapHTML);
-
-    $('#deleteTag' + id).show();
+    
+    if(!deleteMode)
+        $('#tagged' + id).show();
 
     map = $('#mapper');
     map.mapster('unbind')

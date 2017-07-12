@@ -122,7 +122,10 @@ function generateTable(data) {
   for(var row in data) {
     //HTML addition for new table row (one for every row in CSV)
     html += '<tr onMouseover="tableOver(' + row + ')" onMouseout="tableOut( ' + row + ')" id="' + row + '" onClick="dataClick( ' + row + ')" class="data-row">\r\n';
-    html += '<td><button id=deleteTag' + row + ' class="btn-danger btn-xs" style="display:none;" onclick="unmapData( ' + row + ' )">x</button></td>\r\n';
+    if(row != 0)
+      html += '<td><button id=deleteTag' + row + ' class="btn-danger btn-xs" style="display:none;" onclick="unmapData( ' + row + ' )">x</button><button id=tagged' + row + ' class="btn-success btn-xs" style="display:none;">&#10003;</button></td>\r\n';
+    else
+      html += '<td></td>'
     for(var item in data[row]) {
       html += '<td>' + data[row][item] + '</td>\r\n';
     }
@@ -157,4 +160,29 @@ function create_visual(ids){
   $('#result').find('tr').addClass("unlinked");
   $('#result').find('#0').removeClass("unlinked");
   ids.forEach(grey_out);
+}
+
+/**
+ * show delete buttons for tagged objects
+ */
+function showDeletes(){
+  $('#delete').hide();
+  $('#create').show();
+  for (var row in ids){
+    if(ids[row]){
+      $('#tagged' + row).hide();
+      $('#deleteTag' + row).show();
+    }
+  }
+}
+
+function hideDeletes(){
+  $('#create').hide();
+  $('#delete').show();
+  for (var row in ids){
+    if(ids[row]){
+      $('#tagged' + row).show();
+      $('#deleteTag' + row).hide();
+    }
+  }
 }
