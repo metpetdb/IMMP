@@ -12,6 +12,7 @@ function insertAndMapData(x, y, id){
     console.log("Mapping id: " + id + " to coordinates " + x + "," + y);
     if (id === " " || x == null){
         console.log("Invalid ID");
+        alert("ID is not valid.");
         return;
     }
     if(ids[id]){
@@ -92,6 +93,11 @@ function unmapData(id){
     }
 }
 
+
+/**
+ * gets called from map.html document ready function if
+ * data already exists for map
+ */
 function build_mappings(mappingsString){
     var maps = mappingsString.split('\n');
     for(var i = 0; i < maps.length - 1; i++){

@@ -22,7 +22,10 @@ function createMapping(e, img){
 
 }
 
-
+/**
+ * stores current mappings in mappingString
+ * ?
+ */
 document.getElementById("save").addEventListener("click", function(){
     console.log("Saving...");
     var mappingString = "";
@@ -45,6 +48,7 @@ document.getElementById("save").addEventListener("click", function(){
 
 document.getElementById("cancel").addEventListener("click", function(){
     if(confirm("Leave map without saving?")){
+        console.log("Redirecting to homepage");
         document.location.replace('/');
     }
 })
