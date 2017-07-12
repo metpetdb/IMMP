@@ -173,6 +173,11 @@ margin:0;
   right: 142px;
 }
 
+td { 
+  min-width: 20px; 
+  text-align: center; 
+}
+
 .csvstuff {
     position: fixed;
     top: 51px;

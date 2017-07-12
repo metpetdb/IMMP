@@ -10,7 +10,7 @@ var ids = [];
 
 function insertAndMapData(x, y, id){
     console.log("Mapping id: " + id + " to coordinates " + x + "," + y);
-    if (id === " " || x == null){
+    if (id == " " || x == null){
         console.log("Invalid ID");
         alert("ID is not valid.");
         return;
