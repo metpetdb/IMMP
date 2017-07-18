@@ -163,7 +163,7 @@ function create_visual(ids){
 }
 
 /**
- * show delete buttons for tagged objects
+ * show/hide delete buttons next to tagged objects
  */
 function showDeletes(){
   $('#delete').hide();

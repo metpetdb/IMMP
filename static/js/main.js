@@ -49,7 +49,7 @@ document.getElementById("save").addEventListener("click", function(){
     mappings: mappingString
       }, function(data) {
       });
-
+    alert("Map saved.");
 });
 
 document.getElementById("cancel").addEventListener("click", function(){

@@ -57,6 +57,9 @@ var inArea,
 
 // These are called when user hovers over data in table
 function tableOver(num){
+    //no hover action for title row
+    if(num === 0)
+        return;
     map = $('#mapper');
     $( "#" + num ).addClass("hovered");
     map.mapster('set_options', single_opts)
