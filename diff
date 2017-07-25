@@ -1,0 +1,338 @@
+diff --git a/static/js/create_map.js b/static/js/create_map.js
+index 5d882e4..f634fd4 100644
+--- a/static/js/create_map.js
++++ b/static/js/create_map.js
+@@ -1,8 +1,11 @@
+ // createMode indicates if we are or are not in create mode
+ var createMode = false;
+ var deleteMode = false;
+-var x;
+-var y;
++
++/** Coordinates of last point clicked on image. */
++var x, y;
++
++/** data store for tagged features/rows */
+ var ids = [];
+ 
+ function insertAndMapData(x, y, id){
+@@ -19,6 +22,17 @@ function insertAndMapData(x, y, id){
+     mapData(x,y,id);
+ }
+ 
++//////
++/*var a = document.createElement('area');
++a['shape'] = 'circle';
++a['id'] = '1';
++a['data-name'] = '1,all';
++a['coords'] = '191,81,10';
++a['href'] = '#';
++$(".mapper-map").append(a);*/
++
++//////
++
+ function mapData(x,y,id){
+     var mapHTML = "<area shape=\"circle\" ";
+     mapHTML += "id=\"" + id + "\" ";
+@@ -50,7 +64,7 @@ function unmapData(id){
+         return;
+     }
+     
+-    ids[id] = "";
++    delete ids[id];
+ 
+     $(".mapper-map").empty(); //clear html ?
+ 
+@@ -75,12 +89,19 @@ function build_mappings(mappingsString){
+     }
+ }
+ 
++/**
++ * onClick handler which is attached to the rows after clicking on image
++ * 
++ * 
++ */
+ function dataClick(id){
+-    if(createMode){
++    if (createMode) {
+         insertAndMapData(x,y,id);
+     }
+     createMode = false;
++
++    // use toggle class, elements same as line 120 in csv.js @ 1111c0a373f706c7a6e0d8aa46d3a06258ea7a27
+     $('.unlinked').removeClass("unlinked");
+     $('.linked').removeClass("linked");
+     $('.greyOut').removeClass("greyOut");
+-}
+\ No newline at end of file
++}
+diff --git a/static/js/csv-to-json.js b/static/js/csv-to-json.js
+deleted file mode 100644
+index 4435300..0000000
+--- a/static/js/csv-to-json.js
++++ /dev/null
+@@ -1,21 +0,0 @@
+-// Found at https://gist.github.com/jssuttles/8fb8b16a152558906469dfefbf88f658
+-function csvJSON(csv){
+-
+-  var lines=csv.split('\n');
+-
+-  var result = [];
+-
+-  var headers=lines[0].split(',');
+-  lines.splice(0, 1);
+-  lines.forEach(function(line) {
+-    var obj = {};
+-    var currentline = line.split(',');
+-    headers.forEach(function(header, i) {
+-      obj[header] = currentline[i];
+-    });
+-    result.push(obj);
+-  });
+-
+-  //return result; //JavaScript object
+-  return JSON.stringify(result); //JSON
+-}
+\ No newline at end of file
+diff --git a/static/js/csv.js b/static/js/csv.js
+index 1eedcbe..8570071 100644
+--- a/static/js/csv.js
++++ b/static/js/csv.js
+@@ -1,12 +1,12 @@
+ var fileInput = $('#files');
+ var uploadButton = $('#upload');
+ 
+-uploadButton.on('click', function() {
++uploadButton.on('click', function uploadButtonClick() {
+     if (!window.FileReader) {
+         alert('Your browser is not supported')
+     }
+     var input = fileInput.get(0);
+-    
++
+     // Create a reader object
+     var reader = new FileReader();
+     if (input.files.length) {
+@@ -15,10 +15,16 @@ uploadButton.on('click', function() {
+         $(reader).on('load', processFile);
+     } else {
+         alert('Please upload a file before continuing');
+-    } 
++    }
+ 
+ });
+ 
++/**
++ * this and show_* runs once when new image
++ * 
++ * and once on load
++ * hide is called every time image is loaded in build_table? shouldn't it just be once?
++ */
+ function hide_csv_import(){
+   $('#result').empty();
+   $('#upload').hide();
+@@ -45,6 +51,9 @@ function processFile(e) {
+ 
+ }
+ 
++/**
++ * HAPPENS ON LAUNCH (document.ready in map.html)
++ */
+ function build_table(csv){
+   var csvarray = $.csv.toArrays(csv);
+   var csvtable = generateTable(csvarray);
+@@ -62,39 +71,72 @@ function push_csv_to_db(csv){
+   });
+ }
+ 
++/**
++ * Normalizes data to Matrix of Strings
++ * 
++ * Converts List of strings to list of 1-length lists of strings, passes
++ * through list of list of strings as passed in.
++ * 
++ * @param csvData ['string'] or [['string']]
++ * @return matrix of strings
++ */
++function normalizeCSV(csvData) {
++  if (csvData[0].constructor === String) {
++    return csvData.map(function (row) {
++      return [row];
++    });
++  } else if (csvData[0].constructor === Array &&
++    csvData[0][0].constructor === String) {
++    return csvData;
++  } else {
++    // alert('Error: csvData malformed, see console.');
++    console.log(csvData);
++    throw new Error('csvData');
++  }
++}
++
++/**
++var input = ['juan'];
++// var input = ['juan', 'dos', 'tres'];
++// var input = [['juan'], ['dos'], ['tres']];
++var output = normalizeCSV(input);
++
++console.log(output);
++**/
++
+ // build HTML table data from an array (one or two dimensional)
++/**
++ * normalizes data
++ * 
++ * array: if csv 
++ * @param data array[''] or array[[]], array[{}]
++ */
+ function generateTable(data) {
+   var html = '';
+   if(typeof(data[0]) === 'undefined') {
+     return null;
+   }
+-  if(data[0].constructor === String) {
+-    html += '<tr>\r\n';
+-    for(var item in data) {
+-      html += '<td>' + data[item] + '</td>\r\n';
+-    }
+-      html += '</tr>\r\n';
+-  }
+-  if(data[0].constructor === Array) {
+-    for(var row in data) {
+-      //HTML addition for new table row (one for every row in CSV)
+-      html += '<tr onMouseover="tableOver(' + row + ')" onMouseout="tableOut( ' + row + ')" id="' + row + '" onClick="dataClick( ' + row + ')" class="data-row">\r\n';
+-      for(var item in data[row]) {
+-        html += '<td>' + data[row][item] + '</td>\r\n';
+-      }
+-      html += '<td><button class="btn-danger" onclick="unmapData( ' + row + ' )">Delete Tag</button></td>\r\n';
+-      html += '</tr>\r\n';
++
++  data = normalizeCSV(data);
++
++  /**
++   * constructs html for rows with listeners for tableOver, tableOut, and Click on rows
++   * 
++   * * tableData tag with column info 
++   * * button tag to delete with unmapData onclick listener
++   * 
++   * @param tableOver, tableOut, dataClick, unmapData
++   */
++  for(var row in data) {
++    //HTML addition for new table row (one for every row in CSV)
++    html += '<tr onMouseover="tableOver(' + row + ')" onMouseout="tableOut( ' + row + ')" id="' + row + '" onClick="dataClick( ' + row + ')" class="data-row">\r\n';
++    for(var item in data[row]) {
++      html += '<td>' + data[row][item] + '</td>\r\n';
+     }
++    html += '<td><button class="btn-danger" onclick="unmapData( ' + row + ' )">Delete Tag</button></td>\r\n';
++    html += '</tr>\r\n';
+   }
+-  if(data[0].constructor === Object) {
+-    for(var row in data) {
+-      html += '<tr>\r\n';
+-      for(var item in data[row]) {
+-        html += '<td>' + item + ':' + data[row][item] + '</td>\r\n';
+-      }
+-        html += '</tr>\r\n';    }
+-  }
+-  
++
+   return html;
+ }
+ 
+@@ -110,6 +152,9 @@ function generateTableFromJSON(json) {
+   }
+ }
+ 
++/**
++ * refactor to use $.fn.toggleClass
++ */
+ function grey_out(item, index){
+     $('#result').find('#' + index).removeClass("unlinked");
+     $('#result').find('#' + index).addClass("linked");
+diff --git a/static/js/imagemap.js b/static/js/imagemap.js
+deleted file mode 100644
+index 9a8d93b..0000000
+--- a/static/js/imagemap.js
++++ /dev/null
+@@ -1,80 +0,0 @@
+-// javascript
+-
+-// Set up some options objects: 'single_opts' for when a single area is selected, which will show just a border
+-// 'all_opts' for when all are highlighted, to use a different effect - shaded white with a white border
+-// 'initial_opts' for general options that apply to the whole mapster. 'initial_opts' also includes callbacks
+-// onMouseover and onMouseout, which are fired when an area is entered or left. We will use these to show or
+-// remove the captions, and also set a flag to let the other code know if we're currently in an area.
+-var inArea,
+-    map = $('#mapper'),
+-    single_opts = {
+-        fillColor: 'ff0000',
+-        fillOpacity: 0.2,
+-        stroke: true,
+-        strokeColor: 'ff0000',
+-        strokeWidth: 2
+-    },
+-    all_opts = {
+-        fillColor: 'ffffff',
+-        fillOpacity: 0.6,
+-        stroke: true,
+-        strokeWidth: 2,
+-        strokeColor: 'ffffff'
+-    },
+-    initial_opts = {
+-        mapKey: 'data-name',
+-        isSelectable: false,
+-        // These are called when user hovers over mapped locations on image
+-        onMouseover: function (data) {
+-            inArea = true;
+-            $( "#" + data.key ).addClass("hovered");
+-        },
+-        onMouseout: function (data) {
+-            inArea = false;
+-            $( "#" + data.key ).removeClass("hovered");
+-        }
+-    };
+-    opts = $.extend({}, all_opts, initial_opts, single_opts);
+-
+-    // Bind to the image 'mouseover' and 'mouseout' events to activate or deactivate ALL the areas, like the
+-    // original demo. Check whether an area has been activated with "inArea" - IE<9 fires "onmouseover" 
+-    // again for the image when entering an area, so all areas would stay highlighted when entering
+-    // a specific area in those browsers otherwise. It makes no difference for other browsers.
+-
+-    map.mapster('unbind')
+-        .mapster(opts)
+-        .bind('mouseover', function () {
+-            if (!inArea) {
+-                map.mapster('set_options', all_opts)
+-                    .mapster('set', true, 'all')
+-                    .mapster('set_options', single_opts);
+-            }
+-        }).bind('mouseout', function () {
+-            if (!inArea) {
+-                map.mapster('set', false, 'all');
+-            }
+-        });
+-
+-// These are called when user hovers over data in table
+-function tableOver(num){
+-    map = $('#mapper');
+-    $( "#" + num ).addClass("hovered");
+-    map.mapster('set_options', single_opts)
+-        .mapster('set', true, "" + num);
+-
+-}
+-
+-function tableOut(num){
+-    map = $('#mapper');
+-    $( "#" + num ).removeClass("hovered");
+-    map.mapster('set_options', single_opts)
+-        .mapster('set', false, "" + num);
+-
+-}
+-
+-$(document).ready(function() {
+-  $('img').imgAreaSelect({
+-    handles: true
+-  });
+-
+-});
+\ No newline at end of file
