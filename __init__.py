@@ -5,6 +5,7 @@ from sqlalchemy import desc
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:test@localhost/immp'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True;
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB limit
 db = SQLAlchemy(app)
 
 # Database schema
