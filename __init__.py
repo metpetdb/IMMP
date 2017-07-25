@@ -44,12 +44,17 @@ def postmap():
 
 @app.route('/postcsv')
 def postcsv():
-	id = request.args.get('mapID', 0, type=int)
-	csv = request.args.get('csv')
-	map = Maps.query.filter_by(id=id).first()
-	map.csv = csv
-	db.session.commit()
-	return jsonify(csv=csv)
+	try:
+		id = request.args.get('mapID', 0, type=int)
+		csv = request.args.get('csv')
+		map = Maps.query.filter_by(id=id).first()
+		map.csv = csv
+		db.session.commit()
+		return jsonify(csv=csv)
+	except Exception:
+		db.session.rollback()
+		win32api.Messagebox(0,'CSV failed to save.','WARNING')
+		return jsonify{'Failure'};
 
 @app.route('/postmappings')
 def postmappings():
