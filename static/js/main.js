@@ -12,7 +12,7 @@ function createMapping(e, img){
         return;
     }
 
-    $('#canceltag').show();
+    $('#cancelTag').show();
 
     var offset = $(".mapper").offset();
 
@@ -35,7 +35,7 @@ document.getElementById("canceltag").addEventListener("click", function(){
     $('.unlinked').removeClass("unlinked");
     $('.linked').removeClass("linked");
     $('.greyOut').removeClass("greyOut");
-    $('#canceltag').hide();
+    $('#cancelTag').hide();
 })
 
 /**
