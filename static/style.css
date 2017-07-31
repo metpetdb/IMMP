@@ -155,6 +155,12 @@ margin:0;
   background-color: grey;
 }
 
+#canceltag {
+  position: fixed;
+  top: 60px;
+  right: 10px;
+}
+
 #deleteTags {
   position: fixed;
   bottom: 50px;

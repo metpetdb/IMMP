@@ -12,6 +12,8 @@ function createMapping(e, img){
         return;
     }
 
+    $('#canceltag').show();
+
     var offset = $(".mapper").offset();
 
     var offset_t = $(img).offset().top - $(window).scrollTop();
@@ -27,6 +29,14 @@ function createMapping(e, img){
     create_visual(ids);
 
 }
+
+document.getElementById("canceltag").addEventListener("click", function(){
+    createMode = false;
+    $('.unlinked').removeClass("unlinked");
+    $('.linked').removeClass("linked");
+    $('.greyOut').removeClass("greyOut");
+    $('#canceltag').hide();
+})
 
 /**
  * stores current mappings in mappingString
