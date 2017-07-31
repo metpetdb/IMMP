@@ -16,7 +16,7 @@ var inArea,
     },
     all_opts = {
         fillColor: 'ffffff',
-        fillOpacity: 0.6,
+        fillOpacity: 0.4,
         stroke: true,
         strokeWidth: 2,
         strokeColor: 'ffffff'
@@ -48,10 +48,6 @@ var inArea,
                 map.mapster('set_options', all_opts)
                     .mapster('set', true, 'all')
                     .mapster('set_options', single_opts);
-            }
-        }).bind('mouseout', function () {
-            if (!inArea) {
-                map.mapster('set', false, 'all');
             }
         });
 

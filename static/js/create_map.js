@@ -9,6 +9,7 @@ var x, y;
 var ids = [];
 
 function insertAndMapData(x, y, id){
+    $('#cancelTag').hide();
     console.log("Mapping id: " + id + " to coordinates " + x + "," + y);
     if (id == " " || x == null){
         console.log("Invalid ID");
@@ -59,10 +60,6 @@ function mapData(x,y,id){
             map.mapster('set_options', all_opts)
                 .mapster('set', true, 'all')
                 .mapster('set_options', single_opts);
-        }
-    }).bind('mouseout', function () {
-        if (!inArea) {
-            map.mapster('set', false, 'all');
         }
     });
 }
