@@ -16,7 +16,7 @@ var inArea,
     },
     all_opts = {
         fillColor: 'ffffff',
-        fillOpacity: 0.6,
+        fillOpacity: 0.4,
         stroke: true,
         strokeWidth: 2,
         strokeColor: 'ffffff'
@@ -28,6 +28,8 @@ var inArea,
         onMouseover: function (data) {
             inArea = true;
             $( "#" + data.key ).addClass("hovered");
+            var e1 = document.getElementById(data.key);
+            e1.scrollIntoView(true);
         },
         onMouseout: function (data) {
             inArea = false;
@@ -49,14 +51,13 @@ var inArea,
                     .mapster('set', true, 'all')
                     .mapster('set_options', single_opts);
             }
-        }).bind('mouseout', function () {
-            if (!inArea) {
-                map.mapster('set', false, 'all');
-            }
         });
 
 // These are called when user hovers over data in table
 function tableOver(num){
+    //no hover action for title row
+    if(num === 0)
+        return;
     map = $('#mapper');
     $( "#" + num ).addClass("hovered");
     map.mapster('set_options', single_opts)

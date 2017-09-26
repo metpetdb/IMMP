@@ -5,6 +5,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 csvstuff">
           <input type=file id=files />
+          <button id=hint class="btn-primary">Hint: make sure your point numbers are in the first column of your CSV file!</button>
           <button id=upload>Upload CSV file</button>
           <br/><br/>
           <div class="result">
@@ -12,7 +13,6 @@
           </div>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
           <div class="row placeholders">
             <img src=" {{ map.url }} " class="mapper" id="mapper" usemap="#mapper-map" onclick="createMapping(event, this)"/>
             <map name="mapper-map" class="mapper-map">
@@ -27,17 +27,20 @@
     </div>
       <map name="mapper-map" class="mapper-map">
       </map>
-
-    <div id="save"><button type="button">Save</button></div>
+    <div id="deleteTags"><button id="delete" class="btn btn-danger">Delete Mappings</button><button id="create" class="btn btn-success" style="display:none;">Create Mappings</button></div>
+    <div id="canceltag"><button id="cancelTag" type="button" class="btn btn-danger" style="display:none;">Cancel Mapping</button></div>
+    <div id="help"><button type="button" class="btn btn-info">Help</button></div>
+    <div id="cancel"><button type="button" class="btn btn-default">Cancel</button></div>
+    <div id="save"><button type="button" class="btn btn-success">Save</button></div>
 
 </div>
 	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
   <script src="../static/js/jquery.csv.min.js"></script>
-  <script src="../static/js/csv-to-json.js"></script>
+  <script src="../static/js/csv-to-json-gist.js"></script>
   <script src="../static/js/csv.js"></script>
   <script src="{{ url_for('static', filename='js/jquery.imagemapster.js')}}"></script>
   <script src="{{ url_for('static', filename='js/jquery.imgareaselect.min.js')}}"></script>
-  <script src="{{ url_for('static', filename='js/imagemap.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/jQuery-image-mapster-setup.js')}}"></script>
   <script src="{{ url_for('static', filename='js/main.js')}}"></script>
   <script src="{{ url_for('static', filename='js/create_map.js')}}"></script>
   <script>

@@ -5,13 +5,14 @@ from sqlalchemy import desc
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:test@localhost/immp'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True;
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB limit
 db = SQLAlchemy(app)
 
 # Database schema
 class Maps(db.Model):
 	id = db.Column(db.Integer(), primary_key=True)
 	url = db.Column(db.String(512), unique=True)
-	csv = db.Column(db.String())
+	csv = db.Column(db.Text())
 	mapping = db.Column(db.String())
 
 	def __init__(self, url):
