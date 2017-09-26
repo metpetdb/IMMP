@@ -28,6 +28,8 @@ var inArea,
         onMouseover: function (data) {
             inArea = true;
             $( "#" + data.key ).addClass("hovered");
+            var e1 = document.getElementById(data.key);
+            e1.scrollIntoView(true);
         },
         onMouseout: function (data) {
             inArea = false;

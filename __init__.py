@@ -12,7 +12,7 @@ db = SQLAlchemy(app)
 class Maps(db.Model):
 	id = db.Column(db.Integer(), primary_key=True)
 	url = db.Column(db.String(512), unique=True)
-	csv = db.Column(db.String())
+	csv = db.Column(db.Text())
 	mapping = db.Column(db.String())
 
 	def __init__(self, url):
