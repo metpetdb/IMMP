@@ -67,11 +67,28 @@ function build_table(csv){
 function push_csv_to_db(csv){
   var id = window.location.pathname;
   id = id.substring(id.indexOf("id=")+3, id.length);
+  $.ajax({
+    type: 'POST',
+    url: $SCRIPT_ROOT + '/postcsv',
+    data: JSON.stringify({ mapID: id, csv: csv }),
+    contentType: 'application/json',
+    success: function(data){console.log("success")},
+    error: function(data){console.log("failure")}
+  });
+  /*
+  $.post($SCRIPT_ROOT + '/postcsv', JSON.stringify({
+    mapID: id,
+    csv: csv
+  }), function(data) {
+  }, 'json');
+  */
+  /*
   $.getJSON($SCRIPT_ROOT + '/postcsv', {
     mapID: id,
     csv: csv
   }, function(data) {
   });
+  */
 }
 
 /**
