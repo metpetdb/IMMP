@@ -44,9 +44,7 @@ def postmap():
 
 @app.route('/postcsv', methods=['POST'])
 def postcsv():
-	#id = request.args.get('mapID', 0, type=int)
 	id = request.json['mapID']
-	#csv = request.args.get('csv')
 	csv = request.json['csv']
 	map = Maps.query.filter_by(id=id).first()
 	map.csv = csv

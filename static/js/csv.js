@@ -75,20 +75,6 @@ function push_csv_to_db(csv){
     success: function(data){console.log("success")},
     error: function(data){console.log("failure")}
   });
-  /*
-  $.post($SCRIPT_ROOT + '/postcsv', JSON.stringify({
-    mapID: id,
-    csv: csv
-  }), function(data) {
-  }, 'json');
-  */
-  /*
-  $.getJSON($SCRIPT_ROOT + '/postcsv', {
-    mapID: id,
-    csv: csv
-  }, function(data) {
-  });
-  */
 }
 
 /**
